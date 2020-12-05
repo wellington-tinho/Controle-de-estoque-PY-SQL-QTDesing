@@ -72,10 +72,6 @@ produtos_cadastrados = []
 def venda_produtos(produto,quantidade):
   Produtos.quantidade(Produtos.quantidade - quantidade)
 
-# def cadastro_produtos():
-#   Produtos.__init__(self,quantidade)
-
-
 def Buscar_produto(nome):
   for i in produtos_cadastrados:
     if i.nome == nome:
@@ -98,7 +94,6 @@ def cadastro_usuario(nome,id):
   pessoas_cadastradas.append(user)
   return user
   
-
 def cadastro_funcionario(nome,id,ocupacao):
   user=Funcionario(nome,id,ocupacao)
   pessoas_cadastradas.append(user)
@@ -128,6 +123,15 @@ def is_cliente(pessoa):
 def tem_qtd_disponivel(quantidade):
   return Produtos.quantidade > quantidade
 
+def mostra_login(user):
+  if is_funcionario(user):
+    return f'Logado como funcionario: {user.nome}'
+
+  if is_cliente(user):
+    return f'Logado como Cliente: {user.nome}'
+
+  else:
+    return 'Voce não esta logado'
 # wellington Rodrigues
 
 def menu():
@@ -173,7 +177,7 @@ def menu():
     Wellington,09344611362
   Para efetuar cadastro insira seu nome, sua ocupação e seu identificador unico (separando-os por virgula ',')
   ex: Wellington,developer,09344611362
-  Para sair digite:
+  Para sair digite: 0
   """
   #escolha=input("").split(',')
   #if (len(escolha)) == 2 atribui variavel global entrar Funcionario
@@ -211,7 +215,7 @@ def main(logado=False):
   
   logado=logado
   
-  print(f"\n \nLogado {logado} ")
+  print(mostra_login(logado))
   escolha=input(home_menu)
   #thead_escolha_1
   if(escolha == '1'):
@@ -287,9 +291,40 @@ def main(logado=False):
       print("Não ha produtos cadastrados")
       main(logado)
 
-
   if(escolha == '3'):
-    print("passo 1 ....")
+    print("Bem vindo aos primeiros passos \n Primeiramente é preciso cadastrar um Funcionario")
+
+
+    #cadastro do Funcionario
+    escolha=input("""  Para efetuar cadastro insira seu nome, sua ocupação e seu identificador unico - ID (separando-os por virgula ',')
+                        ex: Wellington,developer,123 \n""").split(',')
+    user=cadastro_funcionario(escolha[0],escolha[1],escolha[2])
+    logado = user
+    print("Cadastro do Funcionario realizado com sucesso, agora iremos cadastrar um produto")
+    nomeProd = input("Digite o nome do produto: ")
+    qtdProd = int(input("Digite a quantidade em estoque: "))
+
+
+    #cadastro de Produtos
+    cadastrado = cadastro_produtos(nomeProd, qtdProd)
+    if cadastrado:
+      print('Produto cadastrado com sucesso!')
+    else:
+      print('Ocorreu um erro ao cadastrar o produto, verifique se o produto ja não esta cadastrado')
+    print("Muito bem agora só falta o cadastro do cliente")
+
+
+    #cadastro de Clientes
+    escolha=input("""  Para efetuar cadastro insira seu nome, sua ocupação e seu identificador unico (separando-os por virgula ',')
+                        ex: Wellington,123 \n""").split(',')
+    user=cadastro_usuario(escolha[0],escolha[1])
+    logado = user
+    print("Cadastro do Cliente realizado com sucesso, agora ja podemos entrar no sistema")
+    main(logado)
+
+
+    
+
 
   if(escolha == '4'):
     print("Area adm")
