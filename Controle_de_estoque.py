@@ -150,12 +150,11 @@ def mostra_login(user):
 
   else:
     return 'Voce não esta logado'
-# wellington Rodrigues
 
-def person_cadastradas():
-  print("\n Pessoas cadastradas no sistema")
-  for i in pessoas_cadastradas:
-    print(f"{i.nome}:{i.id} ")
+# def person_cadastradas():
+#   print("\n Pessoas cadastradas no sistema")
+#   for i in pessoas_cadastradas:
+#     print(f"{i.nome}:{i.id} ")
 
 
 
@@ -168,6 +167,8 @@ def menu():
   3 - Primeira vez no Estoque siga esses passos.
   4 - Administracao
   0 - Sair
+  _______________________________________________________________________________
+
   """
 
 
@@ -185,9 +186,9 @@ def menu():
 
   menu_entrar_cliente="""
   Para entrar insira seu e ID 
-  09344611362
+  123
   Para efetuar cadastro insira seu nome e seu identificador unico (separando-os por virgula ',')
-  ex: Wellington,09344611362
+  ex: Wellington,123
   Para sair digite:  0
   """
   #escolha=input("").split(',')
@@ -199,9 +200,9 @@ def menu():
 
   menu_entrar_Funcionario="""
    Para entrar insira seu nome cadastrado e ID (separando-os por virgula ',')
-    Wellington,09344611362
+    Wellington,1234
   Para efetuar cadastro insira seu nome, sua ocupação e seu identificador unico (separando-os por virgula ',')
-  ex: Wellington,developer,09344611362
+  ex: Wellington,developer,1234
   Para sair digite: 0
   """
   #escolha=input("").split(',')
@@ -229,7 +230,7 @@ def menu():
 
   compra_venda_step2="""
   Informe a quantidade desejada
-  Para sair digite:
+ 
   """
   return home_menu,menu_escolha_user,menu_entrar_cliente,menu_entrar_Funcionario,compra_step1,venda_step1,compra_venda_step2
 
@@ -239,10 +240,16 @@ def main(logado=False):
   home_menu,menu_escolha_user,menu_entrar_cliente,menu_entrar_Funcionario,compra_step1,venda_step1,compra_venda_step2 = menu()
   
   logado=logado
-  print ("\n" * 10) 
-  person_cadastradas()
-  print(mostra_login(logado))
+  print("_______________________________________________________________________________ \n", mostra_login(logado))
   escolha=input(home_menu)
+# Bem Vindo ao gerenciador de estoque WK, escolha uma opção.
+  
+#   1 - Login | Cadastro
+#   2 - Realizar Compra | Venda 
+#   3 - Primeira vez no Estoque siga esses passos.
+#   4 - Administracao
+#   0 - Sair"""
+
   #thead_escolha_1
   if(escolha == '1'):
     
@@ -254,7 +261,7 @@ def main(logado=False):
         escolha=input(menu_entrar_cliente).split(',')
         if ((len(escolha)) == 1 and escolha != 0):
             user=id_existe(escolha)
-            if(user):
+            if(is_cliente(user)):
               logado = user
               print("Logado com Sucesso")
             else:
@@ -266,7 +273,7 @@ def main(logado=False):
           print("Cadastro com Sucesso")
         else:
           print("voce escolheu sair")
-        person_cadastradas()
+        
         main(logado)
 
     #cadastro_funcionario
@@ -274,7 +281,7 @@ def main(logado=False):
       escolha=input(menu_entrar_Funcionario).split(',')
       if(len(escolha) == 2):
         user=id_existe(escolha[1])
-        if(user):
+        if(is_funcionario(user)):
           logado = user
           print("Logado com Sucesso")
         else:
@@ -286,7 +293,7 @@ def main(logado=False):
         print("Cadastro com Sucesso")
       else:
         print("voce escolheu sair")
-      person_cadastradas()
+     
       main(logado)
 
     if(escolha == '3'):
@@ -294,8 +301,9 @@ def main(logado=False):
 
   if(escolha == '2'):
 
+
     #saber se existe produto
-    if(Produtos.flag or is_funcionario(logado)):
+    if(Produtos.flag):
 
       #saber se é cliemte
       if is_cliente(logado):
@@ -319,11 +327,11 @@ def main(logado=False):
             print("Quantidade maior do que cadastrada")
       main(logado)
     else:
-      print("Não ha produtos cadastrados")
+      print("Não ha produtos cadastrados, é recomendado ir para Administração")
       main(logado)
 
   if(escolha == '3'):
-    print ("\n" * 2) 
+  
     print("Bem vindo aos primeiros passos \n Primeiramente é preciso cadastrar um Funcionario \n")
 
 
@@ -353,7 +361,7 @@ def main(logado=False):
     logado = user
   
     print("Cadastro do Cliente realizado com sucesso, agora ja podemos entrar no sistema")
-    person_cadastradas()
+ 
     main(logado)
 
   if(escolha == '4'):
@@ -384,6 +392,7 @@ def main(logado=False):
           print("Quantidade: ", produto.quantidade)
         else:
           print('Não possivel encontrar esse produto!')
+
       elif produto_menu == '3':
         nome = input('Digite o nome do produto: ')
         produto = Buscar_produto(nome)
@@ -399,6 +408,7 @@ def main(logado=False):
         if produto:
           excluir_produto(produto)
           print('O produto foi excluido com sucesso!')
+          Produtos.flag=False
         else:
           print('Não possivel encontrar esse produto!')
     else:
@@ -407,9 +417,6 @@ def main(logado=False):
     #confere se logar é instancia de funcionario: se sim
     #CRUD de produtos
 
-##ETAPAS PARA FAZER AINDA
-#Primeira vez no estoque, Sera os primeiros passos
-#4 - Administracao cadastra qunatidade de produtos
         
 
 main()
