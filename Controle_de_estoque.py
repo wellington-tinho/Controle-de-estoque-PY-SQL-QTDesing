@@ -86,8 +86,8 @@ class Funcionario():
 pessoas_cadastradas=[]
 produtos_cadastrados = []
 
-def venda_produtos(produto,quantidade):
-  Produtos.quantidade(Produtos.quantidade - quantidade)
+def venda_produtos(produto, quantidade):
+  produto.quantidade(produto.quantidade - quantidade)
 
 def Buscar_produto(nome):
   for i in produtos_cadastrados:
@@ -119,7 +119,6 @@ def cadastro_funcionario(nome,Id,ocupacao):
 
 def id_existe(Id):
   for i in pessoas_cadastradas:
-    print(i.id)
     if (i.id == Id):
       return i
   return False
@@ -138,8 +137,17 @@ def is_funcionario(pessoa):
 def is_cliente(pessoa):
   return isinstance(pessoa, Usuario)
 
-def tem_qtd_disponivel(quantidade):
-  return Produtos.quantidade > quantidade
+def tem_qtd_disponivel( nome, quantidade):
+  for i in produtos_cadastrados:
+    if i.nome == nome:
+      if i.quantidade - quantidade >= 0:
+        return i
+  
+  return False
+
+  # # return Produtos.quantidade > quantidade
+  # print(f"{Produtos.quantidade} > {quantidade}" )
+  # return True
 
 def mostra_login(user):
   if is_funcionario(user):
@@ -151,7 +159,7 @@ def mostra_login(user):
   else:
     return 'Voce não esta logado'
 
-# def person_cadastradas():
+# def person_cadastradas(
 #   print("\n Pessoas cadastradas no sistema")
 #   for i in pessoas_cadastradas:
 #     print(f"{i.nome}:{i.id} ")
@@ -234,7 +242,6 @@ def menu():
   """
   return home_menu,menu_escolha_user,menu_entrar_cliente,menu_entrar_Funcionario,compra_step1,venda_step1,compra_venda_step2
 
-# Jhonnas Keven
 
 def main(logado=False):
   home_menu,menu_escolha_user,menu_entrar_cliente,menu_entrar_Funcionario,compra_step1,venda_step1,compra_venda_step2 = menu()
@@ -305,11 +312,12 @@ def main(logado=False):
     #saber se existe produto
     if(Produtos.flag):
 
-      #saber se é cliemte
+      #saber se é cliente
       if is_cliente(logado):
         escolha=input(compra_step1)
-        if(id_existe(escolha) and escolha != 0):
-
+        user = id_existe(escolha)
+        if(user and escolha != 0 and is_funcionario(user)):
+           
           escolha=int(input(compra_venda_step2))
           if(tem_qtd_disponivel(escolha)):
             venda_produtos(escolha)
@@ -318,11 +326,15 @@ def main(logado=False):
 
       if is_funcionario(logado):
         escolha=input(venda_step1)
-        if(id_existe(escolha) and escolha != 0):
-
-          escolha=int(input(compra_venda_step2))
-          if(tem_qtd_disponivel(escolha)):
-            venda_produtos(escolha)
+        #recebe id
+        user = id_existe(escolha)
+        print(user.nome)
+        if(user and escolha != 0 and is_cliente(user)):
+          nome_prod=input("Infome o nome do produto: ")
+          qtd=int(input(compra_venda_step2))
+          produto = tem_qtd_disponivel(nome_prod,qtd)
+          if(produto):
+            venda_produtos(produto,qtd)
           else:
             print("Quantidade maior do que cadastrada")
       main(logado)
