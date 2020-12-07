@@ -19,7 +19,7 @@ class Produtos():
     return self.__quantidade
 
   @quantidade.setter
-  def quantidade(self,value):
+  def quantidade(self,value: int):
       self.__quantidade=value
   
   @property
@@ -83,11 +83,12 @@ class Funcionario():
   def id(self,value):
       self.__id=value
 
-pessoas_cadastradas=[]
-produtos_cadastrados = []
+pessoas_cadastradas=[Funcionario('kj','dev','321'), Usuario('jk','123')]
+produtos_cadastrados = [ Produtos('c',5)]
 
 def venda_produtos(produto, quantidade):
-  produto.quantidade(produto.quantidade - quantidade)
+  print(produto.quantidade - quantidade)
+  produto.quantidade = produto.quantidade - quantidade
 
 def Buscar_produto(nome):
   for i in produtos_cadastrados:
@@ -318,9 +319,11 @@ def main(logado=False):
         user = id_existe(escolha)
         if(user and escolha != 0 and is_funcionario(user)):
            
-          escolha=int(input(compra_venda_step2))
-          if(tem_qtd_disponivel(escolha)):
-            venda_produtos(escolha)
+          nome_prod=input("Infome o nome do produto: ")
+          qtd=int(input(compra_venda_step2))
+          produto = tem_qtd_disponivel(nome_prod,qtd)
+          if(produto):
+            venda_produtos(produto,qtd)
           else:
             print("Quantidade maior do que cadastrada")
 
@@ -328,7 +331,6 @@ def main(logado=False):
         escolha=input(venda_step1)
         #recebe id
         user = id_existe(escolha)
-        print(user.nome)
         if(user and escolha != 0 and is_cliente(user)):
           nome_prod=input("Infome o nome do produto: ")
           qtd=int(input(compra_venda_step2))
