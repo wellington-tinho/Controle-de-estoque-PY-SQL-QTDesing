@@ -141,10 +141,13 @@ def tem_qtd_disponivel( nome, quantidade):
   return False
 
 def showProducts():
+  print("_______________________________________________________________________________")
+  print("Listagem de Produtos")
+  print("_______________________________________________________________________________")
   for i in produtos_cadastrados:
-    print("_______________________________________________________________________________ \n")
     print("Nome:", i.nome)
     print("Quantidade:", i.quantidade)
+    print("_______________________________________________________________________________")
   
 def mostra_login(user):
   if is_funcionario(user):
