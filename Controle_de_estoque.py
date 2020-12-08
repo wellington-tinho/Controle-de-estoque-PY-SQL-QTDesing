@@ -87,10 +87,10 @@ pessoas_cadastradas=[Funcionario('kj','dev','321'), Usuario('jk','123')]
 produtos_cadastrados = [ Produtos('c',5)]
 
 def venda_produtos(produto, quantidade):
-  print(produto.quantidade - quantidade)
+  print(f"Produtos restantes: {produto.quantidade - quantidade}")
   produto.quantidade = produto.quantidade - quantidade
 
-def Buscar_produto(nome):
+def Buscar_produto(nome):### possivel erro
   for i in produtos_cadastrados:
     if i.nome == nome:
       return i
@@ -120,6 +120,7 @@ def cadastro_funcionario(nome,Id,ocupacao):
 
 def id_existe(Id):
   for i in pessoas_cadastradas:
+
     if (i.id == Id):
       return i
   return False
@@ -150,20 +151,26 @@ def tem_qtd_disponivel( nome, quantidade):
   # print(f"{Produtos.quantidade} > {quantidade}" )
   # return True
 
+def showProducts():
+  for i in produtos_cadastrados:
+    print("_______________________________________________________________________________ \n")
+    print("Nome:", i.nome)
+    print("Quantidade:", i.quantidade)
+  
 def mostra_login(user):
   if is_funcionario(user):
     return f'Logado como funcionario: {user.nome}'
 
   if is_cliente(user):
-    return f'Logado como Cliente: {user.nome}'
+    return f'Logado como Cliente: {user.nome4}'
 
   else:
     return 'Voce não esta logado'
 
-# def person_cadastradas(
-#   print("\n Pessoas cadastradas no sistema")
-#   for i in pessoas_cadastradas:
-#     print(f"{i.nome}:{i.id} ")
+def person_cadastradas():
+  print("\n Pessoas cadastradas no sistema")
+  for i in pessoas_cadastradas:
+    print(f"{i.nome}:{i.id} ")
 
 
 
@@ -246,7 +253,7 @@ def menu():
 
 def main(logado=False):
   home_menu,menu_escolha_user,menu_entrar_cliente,menu_entrar_Funcionario,compra_step1,venda_step1,compra_venda_step2 = menu()
-  
+
   logado=logado
   print("_______________________________________________________________________________ \n", mostra_login(logado))
   escolha=input(home_menu)
@@ -264,11 +271,12 @@ def main(logado=False):
     #escolha se é cliente ou Funcionario 1,2
     escolha=input(menu_escolha_user)
 
-    #cadastro_Cliente
+    #login_Cliente
     if(escolha == '1'):
         escolha=input(menu_entrar_cliente).split(',')
-        if ((len(escolha)) == 1 and escolha != 0):
-            user=id_existe(escolha)
+
+        if (len(escolha) == 1):
+            user=id_existe(escolha[0])
             if(is_cliente(user)):
               logado = user
               print("Logado com Sucesso")
@@ -284,9 +292,11 @@ def main(logado=False):
         
         main(logado)
 
-    #cadastro_funcionario
+    #login_funcionario
     if(escolha == '2'):
       escolha=input(menu_entrar_Funcionario).split(',')
+     
+
       if(len(escolha) == 2):
         user=id_existe(escolha[1])
         if(is_funcionario(user)):
@@ -296,7 +306,7 @@ def main(logado=False):
             print("ID not Found")
 
       if(len(escolha) == 3): 
-        user=cadastro_funcionario(escolha[0],escolha[1],escolha[2])
+        user=cadastro_funcionario(escolha[0],escolha[2],escolha[1])
         logado = user
         print("Cadastro com Sucesso")
       else:
@@ -308,7 +318,6 @@ def main(logado=False):
       main()
 
   if(escolha == '2'):
-
 
     #saber se existe produto
     if(Produtos.flag):
@@ -382,10 +391,11 @@ def main(logado=False):
     print("Area adm")
     if is_funcionario(logado):
       produto_menu = input("""Digite
-      1 - cadastrar
-      2 - buscar
-      3 - alterar
-      4 - excluir
+      1 - Cadastrar
+      2 - Buscar
+      3 - Alterar
+      4 - Excluir
+      5 - Listar Produtos
       0 - Voltar
       """)
       if produto_menu == '1':
@@ -425,6 +435,8 @@ def main(logado=False):
           Produtos.flag=False
         else:
           print('Não possivel encontrar esse produto!')
+      elif produto_menu == '5':
+        showProducts()
     else:
       print("Voce não tem autorização para entrar aqui, Logue nomentere como Funcionario")
     main(logado)
