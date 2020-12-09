@@ -1,4 +1,4 @@
-from Produto import Produtos
+from .Produto import Produtos
 
 class Estoque: 
   def __init__(self):
