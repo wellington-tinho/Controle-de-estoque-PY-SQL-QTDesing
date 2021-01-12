@@ -319,7 +319,7 @@
       <property name="geometry">
        <rect>
         <x>300</x>
-        <y>140</y>
+        <y>120</y>
         <width>81</width>
         <height>41</height>
        </rect>
@@ -344,8 +344,8 @@
      <widget class="QLabel" name="label_11">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>290</y>
+        <x>70</x>
+        <y>300</y>
         <width>51</width>
         <height>16</height>
        </rect>
@@ -364,8 +364,8 @@
      <widget class="QLineEdit" name="lineEdit_5">
       <property name="geometry">
        <rect>
-        <x>110</x>
-        <y>349</y>
+        <x>130</x>
+        <y>359</y>
         <width>171</width>
         <height>41</height>
        </rect>
@@ -388,8 +388,8 @@
      <widget class="QLabel" name="label_13">
       <property name="geometry">
        <rect>
-        <x>310</x>
-        <y>360</y>
+        <x>330</x>
+        <y>370</y>
         <width>101</width>
         <height>20</height>
        </rect>
@@ -408,8 +408,8 @@
      <widget class="QLabel" name="label_14">
       <property name="geometry">
        <rect>
-        <x>60</x>
-        <y>360</y>
+        <x>80</x>
+        <y>370</y>
         <width>41</width>
         <height>20</height>
        </rect>
@@ -428,8 +428,8 @@
      <widget class="QLineEdit" name="lineEdit_7">
       <property name="geometry">
        <rect>
-        <x>380</x>
-        <y>350</y>
+        <x>400</x>
+        <y>360</y>
         <width>171</width>
         <height>41</height>
        </rect>
@@ -477,8 +477,8 @@
      <widget class="QLineEdit" name="lineEdit_8">
       <property name="geometry">
        <rect>
-        <x>110</x>
-        <y>279</y>
+        <x>130</x>
+        <y>289</y>
         <width>441</width>
         <height>41</height>
        </rect>
@@ -548,6 +548,60 @@
       </property>
       <property name="checkable">
        <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButton_2">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>190</y>
+        <width>141</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QRadioButton:hover{
+	border: 2px solid rgb(255, 255, 255);  
+	color:rgb(255, 255, 255);
+}
+
+</string>
+      </property>
+      <property name="text">
+       <string>Funcionario</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButton">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>190</y>
+        <width>101</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QRadioButton:hover{
+	border: 2px solid rgb(255, 255, 255);  
+	color:rgb(255, 255, 255);
+}</string>
+      </property>
+      <property name="text">
+       <string>Cliente</string>
       </property>
      </widget>
     </widget>

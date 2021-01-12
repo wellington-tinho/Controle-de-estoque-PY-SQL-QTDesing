@@ -142,7 +142,7 @@ class Login(object):
         self.pushButton_7.setText("")
         self.pushButton_7.setObjectName("pushButton_7")
         self.label_10 = QtWidgets.QLabel(self.frame_3)
-        self.label_10.setGeometry(QtCore.QRect(300, 140, 81, 41))
+        self.label_10.setGeometry(QtCore.QRect(300, 120, 81, 41))
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(22)
@@ -154,7 +154,7 @@ class Login(object):
         self.label_10.setStyleSheet("color: rgb(255, 255, 255)")
         self.label_10.setObjectName("label_10")
         self.label_11 = QtWidgets.QLabel(self.frame_3)
-        self.label_11.setGeometry(QtCore.QRect(50, 290, 51, 16))
+        self.label_11.setGeometry(QtCore.QRect(70, 300, 51, 16))
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
@@ -162,7 +162,7 @@ class Login(object):
         self.label_11.setFont(font)
         self.label_11.setObjectName("label_11")
         self.lineEdit_5 = QtWidgets.QLineEdit(self.frame_3)
-        self.lineEdit_5.setGeometry(QtCore.QRect(110, 349, 171, 41))
+        self.lineEdit_5.setGeometry(QtCore.QRect(130, 359, 171, 41))
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
@@ -175,7 +175,7 @@ class Login(object):
 "")
         self.lineEdit_5.setObjectName("lineEdit_5")
         self.label_13 = QtWidgets.QLabel(self.frame_3)
-        self.label_13.setGeometry(QtCore.QRect(310, 360, 101, 20))
+        self.label_13.setGeometry(QtCore.QRect(330, 370, 101, 20))
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
@@ -183,7 +183,7 @@ class Login(object):
         self.label_13.setFont(font)
         self.label_13.setObjectName("label_13")
         self.label_14 = QtWidgets.QLabel(self.frame_3)
-        self.label_14.setGeometry(QtCore.QRect(60, 360, 41, 20))
+        self.label_14.setGeometry(QtCore.QRect(80, 370, 41, 20))
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
@@ -191,7 +191,7 @@ class Login(object):
         self.label_14.setFont(font)
         self.label_14.setObjectName("label_14")
         self.lineEdit_7 = QtWidgets.QLineEdit(self.frame_3)
-        self.lineEdit_7.setGeometry(QtCore.QRect(380, 350, 171, 41))
+        self.lineEdit_7.setGeometry(QtCore.QRect(400, 360, 171, 41))
         self.lineEdit_7.setStyleSheet("QLineEdit:focus{\n"
 "    border: 2px solid;\n"
 "    \n"
@@ -211,7 +211,7 @@ class Login(object):
         self.pushButton_8.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.pushButton_8.setObjectName("pushButton_8")
         self.lineEdit_8 = QtWidgets.QLineEdit(self.frame_3)
-        self.lineEdit_8.setGeometry(QtCore.QRect(110, 279, 441, 41))
+        self.lineEdit_8.setGeometry(QtCore.QRect(130, 289, 441, 41))
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
@@ -246,6 +246,32 @@ class Login(object):
         self.pushButton_5.setIconSize(QtCore.QSize(5, 5))
         self.pushButton_5.setCheckable(False)
         self.pushButton_5.setObjectName("pushButton_5")
+        self.radioButton_2 = QtWidgets.QRadioButton(self.frame_3)
+        self.radioButton_2.setGeometry(QtCore.QRect(330, 190, 141, 61))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setWeight(75)
+        self.radioButton_2.setFont(font)
+        self.radioButton_2.setStyleSheet("QRadioButton:hover{\n"
+"    border: 2px solid rgb(255, 255, 255);  \n"
+"    color:rgb(255, 255, 255);\n"
+"}\n"
+"\n"
+"")
+        self.radioButton_2.setObjectName("radioButton_2")
+        self.radioButton = QtWidgets.QRadioButton(self.frame_3)
+        self.radioButton.setGeometry(QtCore.QRect(230, 190, 101, 61))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setWeight(75)
+        self.radioButton.setFont(font)
+        self.radioButton.setStyleSheet("QRadioButton:hover{\n"
+"    border: 2px solid rgb(255, 255, 255);  \n"
+"    color:rgb(255, 255, 255);\n"
+"}")
+        self.radioButton.setObjectName("radioButton")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -263,6 +289,8 @@ class Login(object):
         self.label_14.setText(_translate("MainWindow", "CPF"))
         self.pushButton_8.setText(_translate("MainWindow", "Confirmar"))
         self.pushButton_5.setText(_translate("MainWindow", "←"))
+        self.radioButton_2.setText(_translate("MainWindow", "Funcionario"))
+        self.radioButton.setText(_translate("MainWindow", "Cliente"))
 # import file2_rc
 # import file_rc_rc
 

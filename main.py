@@ -89,6 +89,13 @@ class Ui_Main(QtWidgets.QWidget):
         self.QtStack.addWidget(self.stack2)
 
 
+logado="Não logado"
+def logadocom():
+  return logado
+
+def setlogado(value):
+  global logado
+  logado = value
 class Main(QMainWindow,Ui_Main):
     def __init__(self):
         super(Main,self).__init__()
@@ -97,18 +104,28 @@ class Main(QMainWindow,Ui_Main):
         #TELA HOME
         self.tela_home.pushButton_2.clicked.connect(self.abrirTelaCadastro)
         self.tela_home.pushButton_5.clicked.connect(self.botaoVoltar)
+        self.tela_home.label_2.setText(logadocom())
+
+        
        
        
         #TELA LOGIN
         self.tela_login.pushButton_8.clicked.connect(self.botaoLogar)
         self.tela_login.pushButton_5.clicked.connect(self.botaoVoltar)
+        self.tela_login.label_9.setText(logadocom())
+
        
 
         #TELA CADASTRO
         self.tela_cadastro.pushButton.clicked.connect(self.abrirTelaLogin)
         self.tela_cadastro.pushButton_8.clicked.connect(self.botaoCadastra)
         self.tela_cadastro.pushButton_5.clicked.connect(self.botaoVoltar)
+        self.tela_cadastro.label_9.setText(logadocom())
+
             
+#TELA HOME
+
+
 
     def abrirTelaCadastro(self):
         self.QtStack.setCurrentIndex(1)
@@ -129,44 +146,67 @@ class Main(QMainWindow,Ui_Main):
               self.tela_cadastro.lineEdit_6.setText('')
               self.tela_cadastro.lineEdit_7.setText('')
               self.tela_cadastro.lineEdit_8.setText('')
+              self.QtStack.setCurrentIndex(2)
           else:
               QMessageBox.information(None,'POOII','Todos os valores devem ser preenchidos')
-          self.QtStack.setCurrentIndex(1)
+  
 
         if (self.tela_cadastro.radioButton_2.isChecked()):
           if not(nome == '' or ocupacao == '' or cpf == '' or senha == ''):
-              cadastro_usuario(nome,ocupacao,cpf,senha)
+              cadastro_funcionario(nome,ocupacao,cpf,senha)
               QMessageBox.information(None,'StorageControl','Cadastro realizado')
               self.tela_cadastro.lineEdit_5.setText('')
               self.tela_cadastro.lineEdit_6.setText('')
               self.tela_cadastro.lineEdit_7.setText('')
               self.tela_cadastro.lineEdit_8.setText('')
+              self.QtStack.setCurrentIndex(2)
           else:
             QMessageBox.information(None,'POOII','Todos os valores devem ser preenchidos')              
 
+        # if not(self.tela_cadastro.radioButton.isChecked() and self.tela_cadastro.radioButton_2.isChecked()):
         else:
           QMessageBox.information(None,'POOII','Voce deve escolher entre Cliente ou Funcionario')
-        self.QtStack.setCurrentIndex(1)
+        
 
     def botaoLogar(self):
-      cadastro_usuario(nome,ocupacao,cpf,senha)
       nome =      self.tela_login.lineEdit_8.text()
-      ocupacao =  self.tela_login.lineEdit_6.text()
       cpf =       self.tela_login.lineEdit_5.text()
       senha =     self.tela_login.lineEdit_7.text()
-      user=id_existe(cpf, clientes)
-      if(is_cliente(user)):
-        pass
-      if(pessoa):
-          self.tela_buscar.lineEdit_8.setText(pessoa.nome)
-          self.tela_buscar.lineEdit_7.setText(pessoa.endereco)
-          self.tela_buscar.lineEdit_6.setText(pessoa.nascimento)
+        
+      
+      if (self.tela_cadastro.radioButton.isChecked()):
+        user=id_existe(cpf, clientes)
+        if(is_cliente(user)):
+          self.tela_cadastro.lineEdit_5.setText('')
+          self.tela_cadastro.lineEdit_7.setText('')
+          self.tela_cadastro.lineEdit_8.setText('')
+
+          setlogado(user.nome)
+          self.tela_login.label_9.setText('Olá '+logadocom())
+          QMessageBox.information(None,'POOII',f'Bem vindo {user.nome}')
+          self.QtStack.setCurrentIndex(0)
+          self.tela_home.label_2.setText('Olá '+user.nome)
+
+        else:
+            QMessageBox.information(None,'POOII','CPF não encontrado')
+            
+
+
+      if (self.tela_cadastro.radioButton_2.isChecked()):
+        user=id_existe(cpf, funcionarios)
+        if(is_funcionario(user)):
+          setlogado(user.nome)
+          self.tela_login.label_9.setText('Olá '+logadocom())
+          QMessageBox.information(None,'POOII',f'Bem vindo {user.nome}')
+          self.QtStack.setCurrentIndex(0)
+          self.tela_home.label_2.setText('Olá '+user.nome)
+
+        else:
+            QMessageBox.information(None,'POOII','CPF não encontrado')
+
+      # if not(self.tela_cadastro.radioButton.isChecked() and self.tela_cadastro.radioButton_2.isChecked()):
       else:
-          QMessageBox.information(None,'POOII','CPF não encontrado')
-          self.tela_buscar.lineEdit_5.setText('')
-          self.tela_buscar.lineEdit_8.setText('')
-          self.tela_buscar.lineEdit_7.setText('')
-          self.tela_buscar.lineEdit_6.setText('')
+          QMessageBox.information(None,'POOII','Voce deve escolher entre Cliente ou Funcionario')
 
     def botaoVoltar(self):
         self.QtStack.setCurrentIndex(0)
