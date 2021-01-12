@@ -14,6 +14,8 @@ from PyQt5.QtCore import QCoreApplication
 from sign_up import Sign_Up
 from login import Login
 from home import Home
+from comprar import Comprar
+from vender import Vender
 
 
 
@@ -73,7 +75,9 @@ class Ui_Main(QtWidgets.QWidget):
 
         self.stack0 = QtWidgets.QMainWindow() 
         self.stack1 = QtWidgets.QMainWindow() 
-        self.stack2 = QtWidgets.QMainWindow() 
+        self.stack2 = QtWidgets.QMainWindow()
+        self.stack3 = QtWidgets.QMainWindow() 
+        self.stack4 = QtWidgets.QMainWindow() 
 
         self.tela_home = Home()
         self.tela_home.setupUi(self.stack0)
@@ -84,9 +88,18 @@ class Ui_Main(QtWidgets.QWidget):
         self.tela_login = Login()
         self.tela_login.setupUi(self.stack2)
 
+        self.tela_compra = Comprar()
+        self.tela_compra.setupUi(self.stack3)
+
+        self.tela_vender = Login()
+        self.tela_vender.setupUi(self.stack4)
+
         self.QtStack.addWidget(self.stack0)
         self.QtStack.addWidget(self.stack1)
         self.QtStack.addWidget(self.stack2)
+        self.QtStack.addWidget(self.stack3)
+        self.QtStack.addWidget(self.stack4)
+
 
 
 logado="Não logado"
@@ -104,6 +117,10 @@ class Main(QMainWindow,Ui_Main):
         #TELA HOME
         self.tela_home.pushButton_2.clicked.connect(self.abrirTelaCadastro)
         self.tela_home.pushButton_5.clicked.connect(self.botaoVoltar)
+
+        self.tela_home.pushButton_3.clicked.connect(self.abrirTelaCompra)
+        self.tela_home.pushButton_4.clicked.connect(self.abrirTelaVenda)
+
         self.tela_home.label_2.setText(logadocom())
 
         
@@ -121,6 +138,11 @@ class Main(QMainWindow,Ui_Main):
         self.tela_cadastro.pushButton_8.clicked.connect(self.botaoCadastra)
         self.tela_cadastro.pushButton_5.clicked.connect(self.botaoVoltar)
         self.tela_cadastro.label_9.setText(logadocom())
+
+
+        #VENDER
+        
+        #COMPRAR
 
             
 #TELA HOME
@@ -167,7 +189,6 @@ class Main(QMainWindow,Ui_Main):
         else:
           QMessageBox.information(None,'POOII','Voce deve escolher entre Cliente ou Funcionario')
         
-
     def botaoLogar(self):
       nome =      self.tela_login.lineEdit_8.text()
       cpf =       self.tela_login.lineEdit_5.text()
@@ -210,6 +231,19 @@ class Main(QMainWindow,Ui_Main):
 
     def botaoVoltar(self):
         self.QtStack.setCurrentIndex(0)
+
+    def abrirTelaCompra(self):
+      if self.tela_home.label_2.text() == "Não logado":
+        QMessageBox.information(None,'POOII','Voce precisa logar para completar essa etapa')
+      else:
+        QMessageBox.information(None,'POOII','Bumm Abriuuuuu')
+
+    def abrirTelaVenda(self):
+      if self.tela_home.label_2.text() == "Não logado":
+        QMessageBox.information(None,'POOII','Voce precisa logar para completar essa etapa')
+      else:
+        QMessageBox.information(None,'POOII','Bumm Abriuuuuu')
+    
 
 
 app = QApplication(sys.argv)

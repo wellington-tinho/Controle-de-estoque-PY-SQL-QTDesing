@@ -442,46 +442,6 @@ QPushButton{
         <strikeout>false</strikeout>
        </font>
       </property>
-      <item>
-       <property name="text">
-        <string>New Item</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>aSDas</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>adssad</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>asdasda</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>adsdasd</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>New Item</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>New Item</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>New Item</string>
-       </property>
-      </item>
      </widget>
      <widget class="QLabel" name="label_11">
       <property name="geometry">
