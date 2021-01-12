@@ -22,14 +22,10 @@ estoque = Estoque()
 
 clientes = [
   Usuario("Joao", "1"), 
-  Usuario("Maria", "4"), 
-  Usuario("Pedro", "232")
 ]
 
 funcionarios = [
   Funcionario("Ricardo","Vendendor", "1"), 
-  Funcionario("Paula","Vendendor" ,"4"), 
-  Funcionario("Maria","Vendendor", "232")
 ]
 
 def is_funcionario(pessoa):
@@ -38,13 +34,15 @@ def is_funcionario(pessoa):
 def is_cliente(pessoa):
   return (isinstance(pessoa, Usuario) and not(is_funcionario(pessoa)))
 
-def cadastro_usuario(nome,Id):
-  user=Usuario(nome,Id)
-  clientes.append(user)
-  return user
+def cadastro_usuario(nome,ocupacao,cpf,senha):
+    user=Usuario(nome,cpf)
+    clientes.append(user)
+    return user
+ 
+
   
-def cadastro_funcionario(nome,Id,ocupacao):
-  user=Funcionario(nome,ocupacao,Id)
+def cadastro_funcionario(nome,ocupacao,cpf,senha):
+  user=Funcionario(nome,ocupacao,cpf)
   funcionarios.append(user)
   return user
 
@@ -64,8 +62,126 @@ def mostra_login(user):
   else:
     return 'Voce não esta logado'
 
+
+
+class Ui_Main(QtWidgets.QWidget):
+    def setupUi(self, Main):
+        Main.setObjectName('main')
+        Main.resize(640,480)
+
+        self.QtStack = QtWidgets.QStackedLayout()
+
+        self.stack0 = QtWidgets.QMainWindow() 
+        self.stack1 = QtWidgets.QMainWindow() 
+        self.stack2 = QtWidgets.QMainWindow() 
+
+        self.tela_home = Home()
+        self.tela_home.setupUi(self.stack0)
+        
+        self.tela_cadastro = Sign_Up()
+        self.tela_cadastro.setupUi(self.stack1)
+
+        self.tela_login = Login()
+        self.tela_login.setupUi(self.stack2)
+
+        self.QtStack.addWidget(self.stack0)
+        self.QtStack.addWidget(self.stack1)
+        self.QtStack.addWidget(self.stack2)
+
+
+class Main(QMainWindow,Ui_Main):
+    def __init__(self):
+        super(Main,self).__init__()
+        self.setupUi(self)
+        
+        #TELA HOME
+        self.tela_home.pushButton_2.clicked.connect(self.abrirTelaCadastro)
+        self.tela_home.pushButton_5.clicked.connect(self.botaoVoltar)
+       
+       
+        #TELA LOGIN
+        self.tela_login.pushButton_8.clicked.connect(self.botaoLogar)
+        self.tela_login.pushButton_5.clicked.connect(self.botaoVoltar)
+       
+
+        #TELA CADASTRO
+        self.tela_cadastro.pushButton.clicked.connect(self.abrirTelaLogin)
+        self.tela_cadastro.pushButton_8.clicked.connect(self.botaoCadastra)
+        self.tela_cadastro.pushButton_5.clicked.connect(self.botaoVoltar)
+            
+
+    def abrirTelaCadastro(self):
+        self.QtStack.setCurrentIndex(1)
+
+    def abrirTelaLogin(self):
+        self.QtStack.setCurrentIndex(2)
+
+    def botaoCadastra(self):
+        nome =      self.tela_cadastro.lineEdit_8.text()
+        ocupacao =  self.tela_cadastro.lineEdit_6.text()
+        cpf =       self.tela_cadastro.lineEdit_5.text()
+        senha =     self.tela_cadastro.lineEdit_7.text()
+        if (self.tela_cadastro.radioButton.isChecked()):
+          if not(nome == '' or ocupacao == '' or cpf == '' or senha == ''):
+              cadastro_usuario(nome,ocupacao,cpf,senha)
+              QMessageBox.information(None,'StorageControl','Cadastro realizado')
+              self.tela_cadastro.lineEdit_5.setText('')
+              self.tela_cadastro.lineEdit_6.setText('')
+              self.tela_cadastro.lineEdit_7.setText('')
+              self.tela_cadastro.lineEdit_8.setText('')
+          else:
+              QMessageBox.information(None,'POOII','Todos os valores devem ser preenchidos')
+          self.QtStack.setCurrentIndex(1)
+
+        if (self.tela_cadastro.radioButton_2.isChecked()):
+          if not(nome == '' or ocupacao == '' or cpf == '' or senha == ''):
+              cadastro_usuario(nome,ocupacao,cpf,senha)
+              QMessageBox.information(None,'StorageControl','Cadastro realizado')
+              self.tela_cadastro.lineEdit_5.setText('')
+              self.tela_cadastro.lineEdit_6.setText('')
+              self.tela_cadastro.lineEdit_7.setText('')
+              self.tela_cadastro.lineEdit_8.setText('')
+          else:
+            QMessageBox.information(None,'POOII','Todos os valores devem ser preenchidos')              
+
+        else:
+          QMessageBox.information(None,'POOII','Voce deve escolher entre Cliente ou Funcionario')
+        self.QtStack.setCurrentIndex(1)
+
+    def botaoLogar(self):
+      cadastro_usuario(nome,ocupacao,cpf,senha)
+      nome =      self.tela_login.lineEdit_8.text()
+      ocupacao =  self.tela_login.lineEdit_6.text()
+      cpf =       self.tela_login.lineEdit_5.text()
+      senha =     self.tela_login.lineEdit_7.text()
+      user=id_existe(cpf, clientes)
+      if(is_cliente(user)):
+        pass
+      if(pessoa):
+          self.tela_buscar.lineEdit_8.setText(pessoa.nome)
+          self.tela_buscar.lineEdit_7.setText(pessoa.endereco)
+          self.tela_buscar.lineEdit_6.setText(pessoa.nascimento)
+      else:
+          QMessageBox.information(None,'POOII','CPF não encontrado')
+          self.tela_buscar.lineEdit_5.setText('')
+          self.tela_buscar.lineEdit_8.setText('')
+          self.tela_buscar.lineEdit_7.setText('')
+          self.tela_buscar.lineEdit_6.setText('')
+
+    def botaoVoltar(self):
+        self.QtStack.setCurrentIndex(0)
+
+
+app = QApplication(sys.argv)
+show_main = Main()
+sys.exit(app.exec_())
+
+
+
 def main(logado=False):
   home_menu,menu_escolha_user,menu_entrar_cliente,menu_entrar_Funcionario,compra_step1,venda_step1,compra_venda_step2 = menu()
+
+
 
   logado=logado
 
@@ -83,13 +199,13 @@ def main(logado=False):
         escolha=input(menu_entrar_cliente).split(',')
 
         #login
-        if (len(escolha) == 1):
-            user=id_existe(escolha[0], clientes)
-            if(is_cliente(user)):
-              logado = user
-              print("Logado com Sucesso")
-            else:
-               print("ID not Found")
+        # if (len(escolha) == 1):
+        #     # user=id_existe(escolha[0], clientes)
+        #     # if(is_cliente(user)):
+        #       logado = user
+        #       print("Logado com Sucesso")
+        #     else:
+        #        print("ID not Found")
 
         #cadastro
         if (len(escolha) == 2): 

@@ -296,6 +296,15 @@ class Sign_Up(object):
         self.pushButton_5.setIconSize(QtCore.QSize(5, 5))
         self.pushButton_5.setCheckable(False)
         self.pushButton_5.setObjectName("pushButton_5")
+        self.pushButton = QtWidgets.QPushButton(self.frame_3)
+        self.pushButton.setGeometry(QtCore.QRect(44, 130, 91, 31))
+        self.pushButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.pushButton.setStyleSheet("QPushButton:hover{\n"
+"    border: 2px solid rgb(255, 255, 255);  \n"
+"    color:rgb(255, 255, 255);\n"
+"}\n"
+"")
+        self.pushButton.setObjectName("pushButton")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -317,14 +326,15 @@ class Sign_Up(object):
         self.radioButton.setText(_translate("MainWindow", "Cliente"))
         self.radioButton_2.setText(_translate("MainWindow", "Funcionario"))
         self.pushButton_5.setText(_translate("MainWindow", "←"))
-import file_rc_rc
+        self.pushButton.setText(_translate("MainWindow", "logar"))
+# import file_rc_rc
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
+    ui = Sign_Up()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())

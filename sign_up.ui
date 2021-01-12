@@ -654,6 +654,29 @@ QPushButton{
        <bool>false</bool>
       </property>
      </widget>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>44</x>
+        <y>130</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton:hover{
+	border: 2px solid rgb(255, 255, 255);  
+	color:rgb(255, 255, 255);
+}
+</string>
+      </property>
+      <property name="text">
+       <string>logar</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>

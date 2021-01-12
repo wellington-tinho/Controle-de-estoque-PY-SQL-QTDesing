@@ -207,14 +207,14 @@ class Home(object):
         self.pushButton_3.setText(_translate("MainWindow", "Comprar"))
         self.pushButton_4.setText(_translate("MainWindow", "Vender"))
         self.label_3.setText(_translate("MainWindow", "Home"))
-import file_rc_rc
+
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
+    ui = Home()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
