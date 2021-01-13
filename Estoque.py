@@ -16,6 +16,13 @@ class Estoque:
       Produtos("Oleo", 8)
     ]
   
+  def allprodutos(self):
+    all=[]
+    for i in self.__produtos:
+      all.append(i.nome)
+    return all
+
+
   def cadastrarProduto(self,nome, quantidade):
     produtoExiste = False
     for i in self.__produtos:
@@ -28,13 +35,13 @@ class Estoque:
       return True
 
   def listarProdutos(self):
-    print("_______________________________________________________________________________")
-    print("Listagem de Produtos")
-    print("_______________________________________________________________________________")
+    # print("_______________________________________________________________________________")
+    # print("Listagem de Produtos")
+    # print("_______________________________________________________________________________")
     for i in self.__produtos:
       print("Nome:", i.nome)
-      print("Quantidade:", i.quantidade)
-      print("_______________________________________________________________________________")
+      # print("Quantidade:", i.quantidade)
+      # print("_______________________________________________________________________________")
 
   def buscarProduto(self, nome):
     for i in self.__produtos:
@@ -61,5 +68,12 @@ class Estoque:
     if produto:
       if(produto.quantidade - quantidade >= 0):
         return True
-
     return False
+
+  def qtd(self,produto):
+    return produto.quantidade
+
+  def AttLista(self):
+    for i in self.__produtos:
+      if i.quantidade == 0:
+        self.__produtos.remove(i)

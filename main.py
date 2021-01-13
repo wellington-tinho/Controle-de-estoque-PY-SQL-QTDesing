@@ -91,7 +91,7 @@ class Ui_Main(QtWidgets.QWidget):
         self.tela_compra = Comprar()
         self.tela_compra.setupUi(self.stack3)
 
-        self.tela_vender = Login()
+        self.tela_vender = Vender()
         self.tela_vender.setupUi(self.stack4)
 
         self.QtStack.addWidget(self.stack0)
@@ -140,9 +140,18 @@ class Main(QMainWindow,Ui_Main):
         self.tela_cadastro.label_9.setText(logadocom())
 
 
-        #VENDER
-        
         #COMPRAR
+        estoque.AttLista()
+        self.tela_compra.comboBox.addItems(estoque.allprodutos())
+        self.tela_compra.pushButton_8.clicked.connect(self.botaoCompra)
+        self.tela_compra.pushButton_5.clicked.connect(self.botaoVoltar)
+
+        #VENDER
+        estoque.AttLista()
+        self.tela_vender.comboBox.addItems(estoque.allprodutos())
+        self.tela_vender.pushButton_8.clicked.connect(self.botaoVender)
+        self.tela_vender.pushButton_5.clicked.connect(self.botaoVoltar)
+        
 
             
 #TELA HOME
@@ -160,15 +169,18 @@ class Main(QMainWindow,Ui_Main):
         ocupacao =  self.tela_cadastro.lineEdit_6.text()
         cpf =       self.tela_cadastro.lineEdit_5.text()
         senha =     self.tela_cadastro.lineEdit_7.text()
+        if not(self.tela_cadastro.radioButton.isChecked() and self.tela_cadastro.radioButton_2.isChecked()):
+          QMessageBox.information(None,'POOII','Voce deve escolher entre Cliente ou Funcionario')
+
         if (self.tela_cadastro.radioButton.isChecked()):
           if not(nome == '' or ocupacao == '' or cpf == '' or senha == ''):
               cadastro_usuario(nome,ocupacao,cpf,senha)
               QMessageBox.information(None,'StorageControl','Cadastro realizado')
+              self.QtStack.setCurrentIndex(2)
               self.tela_cadastro.lineEdit_5.setText('')
               self.tela_cadastro.lineEdit_6.setText('')
               self.tela_cadastro.lineEdit_7.setText('')
               self.tela_cadastro.lineEdit_8.setText('')
-              self.QtStack.setCurrentIndex(2)
           else:
               QMessageBox.information(None,'POOII','Todos os valores devem ser preenchidos')
   
@@ -177,30 +189,26 @@ class Main(QMainWindow,Ui_Main):
           if not(nome == '' or ocupacao == '' or cpf == '' or senha == ''):
               cadastro_funcionario(nome,ocupacao,cpf,senha)
               QMessageBox.information(None,'StorageControl','Cadastro realizado')
+              self.QtStack.setCurrentIndex(2)
               self.tela_cadastro.lineEdit_5.setText('')
               self.tela_cadastro.lineEdit_6.setText('')
               self.tela_cadastro.lineEdit_7.setText('')
               self.tela_cadastro.lineEdit_8.setText('')
-              self.QtStack.setCurrentIndex(2)
           else:
             QMessageBox.information(None,'POOII','Todos os valores devem ser preenchidos')              
-
-        # if not(self.tela_cadastro.radioButton.isChecked() and self.tela_cadastro.radioButton_2.isChecked()):
-        else:
-          QMessageBox.information(None,'POOII','Voce deve escolher entre Cliente ou Funcionario')
-        
+  
     def botaoLogar(self):
       nome =      self.tela_login.lineEdit_8.text()
       cpf =       self.tela_login.lineEdit_5.text()
       senha =     self.tela_login.lineEdit_7.text()
         
       
-      if (self.tela_cadastro.radioButton.isChecked()):
+      if (self.tela_login.radioButton.isChecked()):
         user=id_existe(cpf, clientes)
         if(is_cliente(user)):
-          self.tela_cadastro.lineEdit_5.setText('')
-          self.tela_cadastro.lineEdit_7.setText('')
-          self.tela_cadastro.lineEdit_8.setText('')
+          self.tela_login.lineEdit_5.setText('')
+          self.tela_login.lineEdit_7.setText('')
+          self.tela_login.lineEdit_8.setText('')
 
           setlogado(user.nome)
           self.tela_login.label_9.setText('Olá '+logadocom())
@@ -210,10 +218,8 @@ class Main(QMainWindow,Ui_Main):
 
         else:
             QMessageBox.information(None,'POOII','CPF não encontrado')
-            
-
-
-      if (self.tela_cadastro.radioButton_2.isChecked()):
+        
+      if (self.tela_login.radioButton_2.isChecked()):
         user=id_existe(cpf, funcionarios)
         if(is_funcionario(user)):
           setlogado(user.nome)
@@ -236,14 +242,47 @@ class Main(QMainWindow,Ui_Main):
       if self.tela_home.label_2.text() == "Não logado":
         QMessageBox.information(None,'POOII','Voce precisa logar para completar essa etapa')
       else:
-        QMessageBox.information(None,'POOII','Bumm Abriuuuuu')
+        self.QtStack.setCurrentIndex(3)
 
     def abrirTelaVenda(self):
       if self.tela_home.label_2.text() == "Não logado":
         QMessageBox.information(None,'POOII','Voce precisa logar para completar essa etapa')
       else:
-        QMessageBox.information(None,'POOII','Bumm Abriuuuuu')
+        self.QtStack.setCurrentIndex(4)
     
+    def botaoCompra(self):
+      self.tela_compra.label_9.setText(logadocom())
+      produto=self.tela_compra.comboBox.currentText()
+      quantidade = self.tela_compra.lineEdit_5.text()
+      produto = estoque.buscarProduto(produto)
+      if (produto):
+        print(produto,quantidade)
+        if venda_produtos(produto,quantidade):
+          estoque.AttLista()
+          QMessageBox.information(None,'POOII',f'Operação concluida,  quantidade restante {estoque.qtd(produto)}')
+        else:
+          QMessageBox.information(None,'POOII',f'Quantidade maior que Disponivel total {estoque.qtd(produto)}')
+      else:
+        QMessageBox.information(None,'POOII','Foi vendido todo estoque desse produto')
+      self.QtStack.setCurrentIndex(0)
+      
+    def botaoVender(self):
+      self.tela_vender.label_9.setText(logadocom())
+      produto=self.tela_vender.comboBox.currentText()
+      quantidade = self.tela_vender.lineEdit_5.text()
+      produto = estoque.buscarProduto(produto)
+      if (produto):
+        print(produto,quantidade)
+        if venda_produtos(produto,quantidade):
+          estoque.AttLista()
+          QMessageBox.information(None,'POOII',f'Operação concluida,  quantidade restante {estoque.qtd(produto)}')
+        else:
+          QMessageBox.information(None,'POOII',f'Quantidade maior que Disponivel total {estoque.qtd(produto)}')
+      else:
+        QMessageBox.information(None,'POOII','Foi comprado todo estoque desse produto')
+      self.QtStack.setCurrentIndex(0)
+
+
 
 
 app = QApplication(sys.argv)

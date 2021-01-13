@@ -21,11 +21,10 @@ class Produtos():
   def nome(self,value):
     self.__nome=value
 
-def venda_produtos(produto: Produtos): 
-  quantidade = int(input("Informe a quantidade desejada: "))
+def venda_produtos(produto,qtd): 
+  quantidade = int(qtd)
   if produto.quantidade - quantidade >= 0:
     produto.quantidade = produto.quantidade - quantidade
     return True
-  
   return False
 

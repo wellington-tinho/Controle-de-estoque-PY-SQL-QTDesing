@@ -211,9 +211,6 @@ class Comprar(object):
         self.label_11.setFont(font)
         self.label_11.setStyleSheet("color: rgb(255, 255, 255)")
         self.label_11.setObjectName("label_11")
-        self.spinBox = QtWidgets.QSpinBox(self.frame_3)
-        self.spinBox.setGeometry(QtCore.QRect(320, 460, 61, 41))
-        self.spinBox.setObjectName("spinBox")
         self.label_12 = QtWidgets.QLabel(self.frame_3)
         self.label_12.setGeometry(QtCore.QRect(60, 460, 211, 41))
         font = QtGui.QFont()
@@ -226,6 +223,19 @@ class Comprar(object):
         self.label_12.setFont(font)
         self.label_12.setStyleSheet("color: rgb(255, 255, 255)")
         self.label_12.setObjectName("label_12")
+        self.lineEdit_5 = QtWidgets.QLineEdit(self.frame_3)
+        self.lineEdit_5.setGeometry(QtCore.QRect(320, 460, 171, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.lineEdit_5.setFont(font)
+        self.lineEdit_5.setStyleSheet("QLineEdit:focus{\n"
+"    border: 2px solid rgb(255, 255, 255);  \n"
+"    color:rgb(255, 255, 255);\n"
+"}\n"
+"")
+        self.lineEdit_5.setObjectName("lineEdit_5")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
