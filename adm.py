@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'home.ui'
+# Form implementation generated from reading ui file 'adm.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.1
 #
@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Home(object):
+class Adm(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1312, 760)
@@ -33,6 +33,9 @@ class Home(object):
         self.frame.setObjectName("frame")
         self.frame_2 = QtWidgets.QFrame(self.frame)
         self.frame_2.setGeometry(QtCore.QRect(330, 60, 681, 621))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.frame_2.setFont(font)
         self.frame_2.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.frame_2.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgb(135, 189, 255), stop: 0  rgb(170, 170, 255));\n"
 "\n"
@@ -106,7 +109,7 @@ class Home(object):
         self.label_2.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.label_2.setObjectName("label_2")
         self.pushButton_3 = QtWidgets.QPushButton(self.frame_2)
-        self.pushButton_3.setGeometry(QtCore.QRect(80, 230, 251, 261))
+        self.pushButton_3.setGeometry(QtCore.QRect(20, 300, 201, 241))
         font = QtGui.QFont()
         font.setPointSize(25)
         font.setBold(True)
@@ -127,7 +130,7 @@ class Home(object):
         self.pushButton_3.setDefault(False)
         self.pushButton_3.setObjectName("pushButton_3")
         self.pushButton_4 = QtWidgets.QPushButton(self.frame_2)
-        self.pushButton_4.setGeometry(QtCore.QRect(390, 230, 241, 261))
+        self.pushButton_4.setGeometry(QtCore.QRect(240, 300, 201, 241))
         font = QtGui.QFont()
         font.setPointSize(25)
         font.setBold(True)
@@ -162,7 +165,7 @@ class Home(object):
         self.pushButton_5.setText("")
         self.pushButton_5.setObjectName("pushButton_5")
         self.label_3 = QtWidgets.QLabel(self.frame_2)
-        self.label_3.setGeometry(QtCore.QRect(300, 120, 91, 41))
+        self.label_3.setGeometry(QtCore.QRect(180, 120, 341, 41))
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(22)
@@ -173,6 +176,59 @@ class Home(object):
         self.label_3.setFont(font)
         self.label_3.setStyleSheet("color: rgb(255, 255, 255)")
         self.label_3.setObjectName("label_3")
+        self.label_4 = QtWidgets.QLabel(self.frame_2)
+        self.label_4.setGeometry(QtCore.QRect(220, 210, 251, 41))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(15)
+        font.setBold(True)
+        font.setItalic(False)
+        font.setUnderline(False)
+        font.setWeight(75)
+        self.label_4.setFont(font)
+        self.label_4.setStyleSheet("color: rgb(255, 255, 255)")
+        self.label_4.setObjectName("label_4")
+        self.pushButton_6 = QtWidgets.QPushButton(self.frame_2)
+        self.pushButton_6.setGeometry(QtCore.QRect(460, 300, 201, 241))
+        font = QtGui.QFont()
+        font.setPointSize(25)
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton_6.setFont(font)
+        self.pushButton_6.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.pushButton_6.setStyleSheet("QPushButton{\n"
+"    background-color:rgb(85, 170, 255) ;\n"
+"    color:rgb(255, 255, 255);\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"    background-color: rgb(68, 136, 204); \n"
+"    color:rgb(255, 255, 255);\n"
+"}")
+        self.pushButton_6.setCheckable(False)
+        self.pushButton_6.setChecked(False)
+        self.pushButton_6.setObjectName("pushButton_6")
+        self.pushButton_7 = QtWidgets.QPushButton(self.frame_2)
+        self.pushButton_7.setGeometry(QtCore.QRect(580, 55, 21, 21))
+        font = QtGui.QFont()
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton_7.setFont(font)
+        self.pushButton_7.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.pushButton_7.setMouseTracking(True)
+        self.pushButton_7.setTabletTracking(True)
+        self.pushButton_7.setFocusPolicy(QtCore.Qt.WheelFocus)
+        self.pushButton_7.setStyleSheet("QPushButton{\n"
+"    background-color: rgb(0, 85, 255);\n"
+"    background-position:center;\n"
+"    color:rgb(255, 255, 255);\n"
+"    border-radius: 10px;\n"
+"}\n"
+"")
+        self.pushButton_7.setIconSize(QtCore.QSize(5, 5))
+        self.pushButton_7.setCheckable(False)
+        self.pushButton_7.setObjectName("pushButton_7")
         self.line_2 = QtWidgets.QFrame(self.frame)
         self.line_2.setGeometry(QtCore.QRect(290, 60, 3, 621))
         self.line_2.setFrameShape(QtWidgets.QFrame.VLine)
@@ -205,9 +261,12 @@ class Home(object):
         self.pushButton.setText(_translate("MainWindow", "?"))
         self.label.setText(_translate("MainWindow", "Storage Control "))
         self.label_2.setText(_translate("MainWindow", " VC Não esta logado"))
-        self.pushButton_3.setText(_translate("MainWindow", "Comprar"))
-        self.pushButton_4.setText(_translate("MainWindow", "Vender"))
-        self.label_3.setText(_translate("MainWindow", "Home"))
+        self.pushButton_3.setText(_translate("MainWindow", "Adicionar"))
+        self.pushButton_4.setText(_translate("MainWindow", "Remover"))
+        self.label_3.setText(_translate("MainWindow", "Painel do Administrador"))
+        self.label_4.setText(_translate("MainWindow", "Escolha a opção desejada"))
+        self.pushButton_6.setText(_translate("MainWindow", "Exibir"))
+        self.pushButton_7.setText(_translate("MainWindow", "←"))
 import files_rc 
 
 
@@ -216,7 +275,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Home()
+    ui = Adm()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())

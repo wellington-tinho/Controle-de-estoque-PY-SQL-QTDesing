@@ -99,7 +99,8 @@ class Vender(object):
         self.pushButton_6.setStyleSheet("QPushButton{\n"
 "    background-color: rgb(255, 255, 255);\n"
 "    border: 1px solid rgb(255, 255, 255);\n"
-"    background-image: url(:/Icons/imagens/profile-user.png);\n"
+"    background-image: url(:/icons/profile-user.png);\n"
+
 "    border-radius:25px;\n"
 "}")
         self.pushButton_6.setText("")
@@ -137,7 +138,8 @@ class Vender(object):
 "QPushButton{\n"
 "    background-color: rgb(255, 255, 255);\n"
 "    border: 1px solid rgb(255, 255, 255);\n"
-"    background-image: url(:/Icons/imagens/botton_engine.png);\n"
+"    background-image: url(:/icons/botton_engine.png);\n"
+
 "    background-repeat: no-repeat;\n"
 "    background-position: center;\n"
 "    border-radius:16px;\n"
@@ -252,8 +254,7 @@ class Vender(object):
         self.pushButton_5.setText(_translate("MainWindow", "←"))
         self.label_11.setText(_translate("MainWindow", "Escolha um item"))
         self.label_12.setText(_translate("MainWindow", "Escolha a quantidade"))
-# import file_rc_rc
-
+import files_rc 
 
 if __name__ == "__main__":
     import sys

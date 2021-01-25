@@ -3,23 +3,19 @@ from Produto import Produtos
 class Estoque: 
   def __init__(self):
     self.__produtos = [
-      Produtos("Cafe", 20),
-      Produtos("Feijao", 10),
-      Produtos("Carne de Boi", 10),
-      Produtos("Carne de Frango", 10),
-      Produtos("Suco", 15),
-      Produtos("Vinho", 12),
-      Produtos("Refrigerante", 9),
-      Produtos("Arroz", 3),
-      Produtos("Sal", 5),
-      Produtos("Açucar", 7),
-      Produtos("Oleo", 8)
+      Produtos("teste", 20),
     ]
   
   def allprodutos(self):
     all=[]
     for i in self.__produtos:
       all.append(i.nome)
+    return all
+
+  def allprodutos_com_quantidade(self):
+    all=[]
+    for i in self.__produtos:
+      all.append(f" Produto: {i.nome} \t Quantidade: {i.quantidade}")
     return all
 
 

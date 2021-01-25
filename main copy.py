@@ -319,7 +319,7 @@ class Ui_Main(QtWidgets.QWidget):
       self.tela_adm_add = Adm_adicionar()
       self.tela_adm_add.setupUi(self.stack6)
 
-      self.tela_adm_exclui = Adm_remover()
+      self.tela_adm_exclui = Adm_adicionar()
       self.tela_adm_exclui.setupUi(self.stack7)
 
       self.tela_adm_exibir = Adm_exibir()
@@ -336,12 +336,12 @@ class Ui_Main(QtWidgets.QWidget):
       self.QtStack.addWidget(self.stack8)
 
 
-
-
 class gambiarra():
   def __init__(self,name):
     self.nome = name
-logado =gambiarra("Não logado")
+
+
+logado = gambiarra("Não logado")
 
 # logado = 'Não logado'
 def logadocom():
@@ -403,10 +403,6 @@ class Main(QMainWindow,Ui_Main):
     super(Main,self).__init__()
     self.setupUi(self)
     
-    estoque.AttLista()
-
-
-
     #TELA HOME
     self.tela_home.pushButton_2.clicked.connect(self.abrirTelaCadastro)
     self.tela_home.pushButton_3.clicked.connect(self.abrirTelaCompra)
@@ -414,6 +410,8 @@ class Main(QMainWindow,Ui_Main):
     self.tela_home.pushButton_5.clicked.connect(self.abrirTelaADM)
     self.tela_home.label_2.setText(logadocom().nome)
 
+    
+    
     
     #TELA LOGIN
     self.tela_login.pushButton_8.clicked.connect(self.botaoLogar)
@@ -430,37 +428,19 @@ class Main(QMainWindow,Ui_Main):
 
 
     #COMPRAR
+    estoque.AttLista()
     self.tela_compra.comboBox.addItems(estoque.allprodutos())
     self.tela_compra.pushButton_8.clicked.connect(self.botaoCompra)
     self.tela_compra.pushButton_5.clicked.connect(self.botaoVoltar)
 
     #VENDER
+    estoque.AttLista()
     self.tela_vender.comboBox.addItems(estoque.allprodutos())
     self.tela_vender.pushButton_8.clicked.connect(self.botaoVender)
     self.tela_vender.pushButton_5.clicked.connect(self.botaoVoltar)   
-      
-    #TELA_ADM
-    self.tela_adm.pushButton_3.clicked.connect(self.abrirTelaADM_adicionar)
-    self.tela_adm.pushButton_4.clicked.connect(self.abrirTelaADM_remover)
-    self.tela_adm.pushButton_6.clicked.connect(self.abrirTelaADM_exibir)
-    self.tela_adm.pushButton_7.clicked.connect(self.botaoVoltar)
-    # self.tela_adm.pushButton
+  
 
-    #TELA_ADM_ADICIONA
-    self.tela_adm_add.pushButton_8.clicked.connect(self.abrirTelaADM)
-    self.tela_adm_add.pushButton_5.clicked.connect(self.botaoVoltar)
-    self.tela_adm_add.pushButton_9.clicked.connect(self.botao_adc_item)
-    
 
-    #TELA_ADM_REMOVE
-    self.tela_adm_exclui.pushButton_8.clicked.connect(self.botao_remover)
-    self.tela_adm_exclui.pushButton_5.clicked.connect(self.botaoVoltar)
-    self.tela_adm_exclui.pushButton_9.clicked.connect(self.abrirTelaADM)
-
-    #TELA_ADM_EXIBI
-    self.tela_adm_exibir.pushButton_5.clicked.connect(self.botaoVoltar)
-    self.tela_adm_exibir.pushButton_8.clicked.connect(self.abrirTelaADM)
-    self.tela_adm_exibir.listWidget.addItems(estoque.allprodutos_com_quantidade())
 
   def abrirTelaCadastro(self):
     """
@@ -561,7 +541,7 @@ class Main(QMainWindow,Ui_Main):
         self.tela_login.lineEdit_8.setText('')
 
         setlogado(user)
-        self.tela_login.label_9.setText('Olá '+logadocom().nome)
+        self.tela_login.label_9.setText('Olá '+logadocom())
         QMessageBox.information(None,'POOII',f'Bem vindo {user.nome}')
         self.QtStack.setCurrentIndex(0)
         self.tela_home.label_2.setText('Olá '+user.nome)
@@ -619,8 +599,6 @@ class Main(QMainWindow,Ui_Main):
       QMessageBox.information(None,'POOII','Voce precisa logar para completar essa etapa')
     else:
       self.QtStack.setCurrentIndex(3)
-      self.tela_compra.comboBox.clear()
-      self.tela_compra.comboBox.addItems(estoque.allprodutos())
 
   def abrirTelaVenda(self):
     """
@@ -640,9 +618,6 @@ class Main(QMainWindow,Ui_Main):
       QMessageBox.information(None,'POOII','Voce precisa logar para completar essa etapa')
     else:
       self.QtStack.setCurrentIndex(4)
-      self.tela_vender.comboBox.clear()
-      self.tela_vender.comboBox.addItems(estoque.allprodutos())
-      
  
   def botaoCompra(self):
     """
@@ -704,7 +679,7 @@ class Main(QMainWindow,Ui_Main):
 
   def abrirTelaADM(self):
       """
-      Função de varias telas responsavel pelo botao que direciona para a tela do administrador
+      Função da tela home responsavel pelo botao que direciona para a tela de vendas
       ...
     
       Retornos
@@ -716,87 +691,11 @@ class Main(QMainWindow,Ui_Main):
       Sem exeções
 
       """
-      
+      print(logadocom(), logadocom().nome, is_funcionario(logadocom()))
       if is_funcionario(logadocom()):
-        self.QtStack.setCurrentIndex(5)
-      else:
         QMessageBox.information(None,'POOII','Voce precisa estar logado como funcionario')
-
-  def abrirTelaADM_adicionar(self):
-      """
-      Função de varias telas responsavel pelo botao que direciona para a tela de adicionar do administrador
-      ...
-    
-      Retornos
-      __________
-      Não possui um retorno
-
-      Exeções
-      __________
-      Sem exeções
-
-      """
-      self.QtStack.setCurrentIndex(6)
-    
-  def abrirTelaADM_remover(self):
-      """
-      Função de varias telas responsavel pelo botao que direciona para a tela remover do administrador
-      ...
-    
-      Retornos
-      __________
-      Não possui um retorno
-
-      Exeções
-      __________
-      Sem exeções
-
-      """
-      self.QtStack.setCurrentIndex(7)
-      self.tela_adm_exclui.comboBox.clear()
-      self.tela_adm_exclui.comboBox.addItems(estoque.allprodutos())
-    
-  def abrirTelaADM_exibir(self):
-      """
-      Função de varias telas responsavel pelo botao que direciona para a tela exibir do administrador
-      ...
-    
-      Retornos
-      __________
-      Não possui um retorno
-
-      Exeções
-      __________
-      Sem exeções
-
-      """
-      self.QtStack.setCurrentIndex(8)
-      self.tela_adm_exibir.listWidget.clear()
-      self.tela_adm_exibir.listWidget.addItems(estoque.allprodutos_com_quantidade())
-
-    
-  def botao_adc_item(self):
-    produto =           self.tela_adm_add.lineEdit_6.text()
-    quantidade =        self.tela_adm_add.lineEdit_5.text()
-  
-
-    if (produto != '' and quantidade !=''):
-      if estoque.cadastrarProduto(produto,int(quantidade)):
-        estoque.AttLista()
-        QMessageBox.information(None,'POOII',f'Operação concluida, produto {produto} foi cadastrado com suceeso')
       else:
-        QMessageBox.information(None,'POOII',f'Operação cancelada, produto {produto} já foi cadastrado no sistema')
-    else:
-        QMessageBox.information(None,'POOII',f'Erro, um ou mais campos não foram preenchidos')
-    self.tela_adm_add.lineEdit_6.setText('')
-    self.tela_adm_add.lineEdit_5.setText('')
-  
-  def botao_remover(self):
-    produto=self.tela_adm_exclui.comboBox.currentText()
-    if estoque.buscarProduto(produto):
-      nome=estoque.buscarProduto(produto)
-      estoque.exluirProduto(produto)
-      QMessageBox.information(None,'POOII',f'{nome} foi excuido com sucesso')
+        self.QtStack.setCurrentIndex(5)
 
 
 app = QApplication(sys.argv)

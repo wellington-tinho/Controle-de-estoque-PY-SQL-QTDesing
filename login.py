@@ -99,7 +99,7 @@ class Login(object):
         self.pushButton_6.setStyleSheet("QPushButton{\n"
 "    background-color: rgb(255, 255, 255);\n"
 "    border: 1px solid rgb(255, 255, 255);\n"
-"    background-image: url(:/Icons/imagens/profile-user.png);\n"
+"    background-image: url(:/icons/profile-user.png);\n"
 "    border-radius:25px;\n"
 "}")
         self.pushButton_6.setText("")
@@ -291,9 +291,7 @@ class Login(object):
         self.pushButton_5.setText(_translate("MainWindow", "←"))
         self.radioButton_2.setText(_translate("MainWindow", "Funcionario"))
         self.radioButton.setText(_translate("MainWindow", "Cliente"))
-# import file2_rc
-# import file_rc_rc
-
+import files_rc 
 
 if __name__ == "__main__":
     import sys

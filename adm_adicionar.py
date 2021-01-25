@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'sign_up.ui'
+# Form implementation generated from reading ui file 'adm_adicionar.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.1
 #
@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Sign_Up(object):
+class Adm_adicionar(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1312, 760)
@@ -99,7 +99,7 @@ class Sign_Up(object):
         self.pushButton_6.setStyleSheet("QPushButton{\n"
 "    background-color: rgb(255, 255, 255);\n"
 "    border: 1px solid rgb(255, 255, 255);\n"
-"    background-image: url(:/icons/profile-user.png);\n"
+"    background-image: url(:icons/profile-user.png);\n"
 "    border-radius:25px;\n"
 "}")
         self.pushButton_6.setText("")
@@ -137,7 +137,7 @@ class Sign_Up(object):
 "QPushButton{\n"
 "    background-color: rgb(255, 255, 255);\n"
 "    border: 1px solid rgb(255, 255, 255);\n"
-"    background-image: url(:/icons/botton_engine.png);\n"
+"    background-image: url(:icons/botton_engine.png);\n"
 "    background-repeat: no-repeat;\n"
 "    background-position: center;\n"
 "    border-radius:16px;\n"
@@ -145,7 +145,7 @@ class Sign_Up(object):
         self.pushButton_7.setText("")
         self.pushButton_7.setObjectName("pushButton_7")
         self.label_10 = QtWidgets.QLabel(self.frame_3)
-        self.label_10.setGeometry(QtCore.QRect(290, 120, 121, 41))
+        self.label_10.setGeometry(QtCore.QRect(240, 140, 261, 41))
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(22)
@@ -156,75 +156,8 @@ class Sign_Up(object):
         self.label_10.setFont(font)
         self.label_10.setStyleSheet("color: rgb(255, 255, 255)")
         self.label_10.setObjectName("label_10")
-        self.label_11 = QtWidgets.QLabel(self.frame_3)
-        self.label_11.setGeometry(QtCore.QRect(60, 310, 51, 16))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_11.setFont(font)
-        self.label_11.setObjectName("label_11")
-        self.lineEdit_5 = QtWidgets.QLineEdit(self.frame_3)
-        self.lineEdit_5.setGeometry(QtCore.QRect(120, 439, 171, 41))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.lineEdit_5.setFont(font)
-        self.lineEdit_5.setStyleSheet("QLineEdit:focus{\n"
-"    border: 2px solid rgb(255, 255, 255);  \n"
-"    color:rgb(255, 255, 255);\n"
-"}\n"
-"")
-        self.lineEdit_5.setObjectName("lineEdit_5")
-        self.label_12 = QtWidgets.QLabel(self.frame_3)
-        self.label_12.setGeometry(QtCore.QRect(30, 380, 81, 20))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_12.setFont(font)
-        self.label_12.setObjectName("label_12")
-        self.label_13 = QtWidgets.QLabel(self.frame_3)
-        self.label_13.setGeometry(QtCore.QRect(320, 450, 101, 20))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_13.setFont(font)
-        self.label_13.setObjectName("label_13")
-        self.label_14 = QtWidgets.QLabel(self.frame_3)
-        self.label_14.setGeometry(QtCore.QRect(70, 450, 41, 20))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_14.setFont(font)
-        self.label_14.setObjectName("label_14")
-        self.lineEdit_6 = QtWidgets.QLineEdit(self.frame_3)
-        self.lineEdit_6.setGeometry(QtCore.QRect(120, 369, 441, 41))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.lineEdit_6.setFont(font)
-        self.lineEdit_6.setStyleSheet("QLineEdit:focus{\n"
-"    border: 2px solid rgb(255, 255, 255);  \n"
-"    color:rgb(255, 255, 255);\n"
-"}\n"
-"")
-        self.lineEdit_6.setObjectName("lineEdit_6")
-        self.lineEdit_7 = QtWidgets.QLineEdit(self.frame_3)
-        self.lineEdit_7.setGeometry(QtCore.QRect(390, 440, 171, 41))
-        self.lineEdit_7.setStyleSheet("QLineEdit:focus{\n"
-"    border: 2px solid;\n"
-"    \n"
-"}\n"
-"")
-        self.lineEdit_7.setEchoMode(QtWidgets.QLineEdit.Password)
-        self.lineEdit_7.setObjectName("lineEdit_7")
         self.pushButton_8 = QtWidgets.QPushButton(self.frame_3)
-        self.pushButton_8.setGeometry(QtCore.QRect(280, 550, 131, 41))
+        self.pushButton_8.setGeometry(QtCore.QRect(170, 390, 111, 61))
         font = QtGui.QFont()
         font.setPointSize(11)
         font.setBold(True)
@@ -234,47 +167,6 @@ class Sign_Up(object):
         self.pushButton_8.setMouseTracking(False)
         self.pushButton_8.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.pushButton_8.setObjectName("pushButton_8")
-        self.lineEdit_8 = QtWidgets.QLineEdit(self.frame_3)
-        self.lineEdit_8.setGeometry(QtCore.QRect(120, 299, 441, 41))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.lineEdit_8.setFont(font)
-        self.lineEdit_8.setStyleSheet("QLineEdit:focus{\n"
-"    border: 2px solid rgb(255, 255, 255);  \n"
-"    color:rgb(255, 255, 255);\n"
-"}\n"
-"\n"
-"\n"
-"")
-        self.lineEdit_8.setObjectName("lineEdit_8")
-        self.radioButton = QtWidgets.QRadioButton(self.frame_3)
-        self.radioButton.setGeometry(QtCore.QRect(240, 180, 101, 61))
-        font = QtGui.QFont()
-        font.setPointSize(14)
-        font.setBold(True)
-        font.setWeight(75)
-        self.radioButton.setFont(font)
-        self.radioButton.setStyleSheet("QRadioButton:hover{\n"
-"    border: 2px solid rgb(255, 255, 255);  \n"
-"    color:rgb(255, 255, 255);\n"
-"}")
-        self.radioButton.setObjectName("radioButton")
-        self.radioButton_2 = QtWidgets.QRadioButton(self.frame_3)
-        self.radioButton_2.setGeometry(QtCore.QRect(340, 180, 141, 61))
-        font = QtGui.QFont()
-        font.setPointSize(14)
-        font.setBold(True)
-        font.setWeight(75)
-        self.radioButton_2.setFont(font)
-        self.radioButton_2.setStyleSheet("QRadioButton:hover{\n"
-"    border: 2px solid rgb(255, 255, 255);  \n"
-"    color:rgb(255, 255, 255);\n"
-"}\n"
-"\n"
-"")
-        self.radioButton_2.setObjectName("radioButton_2")
         self.pushButton_5 = QtWidgets.QPushButton(self.frame_3)
         self.pushButton_5.setGeometry(QtCore.QRect(590, 50, 21, 21))
         font = QtGui.QFont()
@@ -296,15 +188,67 @@ class Sign_Up(object):
         self.pushButton_5.setIconSize(QtCore.QSize(5, 5))
         self.pushButton_5.setCheckable(False)
         self.pushButton_5.setObjectName("pushButton_5")
-        self.pushButton = QtWidgets.QPushButton(self.frame_3)
-        self.pushButton.setGeometry(QtCore.QRect(44, 130, 91, 31))
-        self.pushButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.pushButton.setStyleSheet("QPushButton:hover{\n"
+        self.label_11 = QtWidgets.QLabel(self.frame_3)
+        self.label_11.setGeometry(QtCore.QRect(50, 260, 241, 41))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(16)
+        font.setBold(True)
+        font.setItalic(False)
+        font.setUnderline(False)
+        font.setWeight(75)
+        self.label_11.setFont(font)
+        self.label_11.setStyleSheet("color: rgb(255, 255, 255)")
+        self.label_11.setObjectName("label_11")
+        self.label_12 = QtWidgets.QLabel(self.frame_3)
+        self.label_12.setGeometry(QtCore.QRect(420, 260, 201, 41))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(16)
+        font.setBold(True)
+        font.setItalic(False)
+        font.setUnderline(False)
+        font.setWeight(75)
+        self.label_12.setFont(font)
+        self.label_12.setStyleSheet("color: rgb(255, 255, 255)")
+        self.label_12.setObjectName("label_12")
+        self.lineEdit_5 = QtWidgets.QLineEdit(self.frame_3)
+        self.lineEdit_5.setGeometry(QtCore.QRect(420, 310, 171, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.lineEdit_5.setFont(font)
+        self.lineEdit_5.setStyleSheet("QLineEdit:focus{\n"
 "    border: 2px solid rgb(255, 255, 255);  \n"
 "    color:rgb(255, 255, 255);\n"
 "}\n"
 "")
-        self.pushButton.setObjectName("pushButton")
+        self.lineEdit_5.setObjectName("lineEdit_5")
+        self.lineEdit_6 = QtWidgets.QLineEdit(self.frame_3)
+        self.lineEdit_6.setGeometry(QtCore.QRect(50, 310, 321, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.lineEdit_6.setFont(font)
+        self.lineEdit_6.setStyleSheet("QLineEdit:focus{\n"
+"    border: 2px solid rgb(255, 255, 255);  \n"
+"    color:rgb(255, 255, 255);\n"
+"}\n"
+"")
+        self.lineEdit_6.setObjectName("lineEdit_6")
+        self.pushButton_9 = QtWidgets.QPushButton(self.frame_3)
+        self.pushButton_9.setGeometry(QtCore.QRect(300, 390, 201, 61))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton_9.setFont(font)
+        self.pushButton_9.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.pushButton_9.setMouseTracking(False)
+        self.pushButton_9.setFocusPolicy(QtCore.Qt.ClickFocus)
+        self.pushButton_9.setObjectName("pushButton_9")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -316,24 +260,20 @@ class Sign_Up(object):
         self.pushButton_4.setText(_translate("MainWindow", "?"))
         self.label_7.setText(_translate("MainWindow", "Storage Control "))
         self.label_9.setText(_translate("MainWindow", " VC Não esta logado"))
-        self.label_10.setText(_translate("MainWindow", "Cadastro"))
-        self.label_11.setText(_translate("MainWindow", "Nome"))
-        self.label_12.setText(_translate("MainWindow", "Ocupação"))
-        self.label_13.setText(_translate("MainWindow", "Senha"))
-        self.label_14.setText(_translate("MainWindow", "CPF"))
-        self.lineEdit_6.setPlaceholderText(_translate("MainWindow", "Digite Cliente, caso não for funcionario"))
-        self.pushButton_8.setText(_translate("MainWindow", "Confirmar"))
-        self.radioButton.setText(_translate("MainWindow", "Cliente"))
-        self.radioButton_2.setText(_translate("MainWindow", "Funcionario"))
+        self.label_10.setText(_translate("MainWindow", "Adicionar produto"))
+        self.pushButton_8.setText(_translate("MainWindow", "Voltar"))
         self.pushButton_5.setText(_translate("MainWindow", "←"))
-        self.pushButton.setText(_translate("MainWindow", "logar"))
+        self.label_11.setText(_translate("MainWindow", "Escreva o nome do item"))
+        self.label_12.setText(_translate("MainWindow", "Digite a quantidade"))
+        self.pushButton_9.setText(_translate("MainWindow", "Confirmar"))
 import files_rc 
+
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Sign_Up()
+    ui = Adm_adicionar()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
