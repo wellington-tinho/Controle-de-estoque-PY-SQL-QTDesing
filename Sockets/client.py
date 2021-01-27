@@ -24,7 +24,7 @@ while (mensagem!='<sair>'):
         senha= input("Digite senha:  ")
         ocupacao=input("Digite ocupacao:  ")
         # user=Usuario(nome,_id,senha,ocupacao)
-        mensagem = f"IU,{nome},{_id},{senha},{ocupacao}"
+        mensagem = f"IU{_id},{nome},{ocupacao},{senha}"
         client_socket.send(mensagem.encode()) #envia mensagem
         print(client_socket.recv(1024).decode())
 
@@ -33,21 +33,23 @@ while (mensagem!='<sair>'):
         nome=input("Digite nome: ")
         quantidade=input("Digite quantidade: ")
         # produto=Produtos(nome,quantidade)
-        mensagem = f"IP,{nome},{quantidade}"
+        mensagem = f"IP{nome},{quantidade}"
         client_socket.send(mensagem.encode()) #envia mensagem
         print(client_socket.recv(1024).decode())
 
 
     if(opc=='3'):
-        print("listar users")
-        mensagem = [['RU']['']]
+        id_=input("Digite id: ")
+        print("listar users: ")
+        mensagem = f"LU{id_}"
         client_socket.send(mensagem.encode()) #envia mensagem
         print(client_socket.recv(1024).decode())
 
  
     if(opc=='4'):
-        print("listar prodrutos")
-        mensagem = [['RP']['']]
+        nome=input("Digite nome: ")
+        print("listar produto: ")
+        mensagem = f"LP{nome}"
         client_socket.send(mensagem.encode()) #envia mensagem
         print(client_socket.recv(1024).decode())
     if (opc == '<sair>'):

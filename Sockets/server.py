@@ -1,5 +1,62 @@
 import csv
 import socket 
+import csv
+import pandas as pd
+
+def insere_User(value):
+    print("inserindo User",value.split(','))
+    id_,Nome,Ocupacao,Senha=value.split(',')
+    with open('Pessoa.csv', 'a', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow([f'{id_}', f'{Nome}', f'{Ocupacao}',f'{Senha}'])
+
+def insere_Poduto(value):
+    print("inserindo produto",value.split(','))
+    Nome,Quantidade=value.split(',')
+    with open('Produtos.csv', 'a', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow([f'{Nome}', f'{Quantidade}'])
+
+
+def exibe_User(value):
+    print('request =',value)
+    with open('Pessoa.csv', 'r', newline='') as file:
+        linhas = csv.reader(file, delimiter=';')
+        lst = list(linhas)
+        for i in lst:
+            dados = str(i[0]).split(',')
+            if (value == (dados[0])):
+                return con.send(i[0].encode()) 
+        return '<!FAlSE>'
+
+
+def exibe_Produto(value):
+    print('request =',value)
+    with open('Produtos.csv', 'r', newline='') as file:
+        linhas = csv.reader(file, delimiter=';')
+        lst = list(linhas)
+        for i in lst:
+            dados = str(i[0]).split(',')
+            if (value == (dados[0])):
+                return con.send(i[0].encode()) 
+        return '<!FAlSE>'
+
+
+
+
+
+ 
+#Remover
+# lst = []
+# with open('Pessoa.csv', 'r', newline='') as file:
+#     linhas = csv.reader(file)
+#     lst = list(linhas) 
+#     for i in lst:
+#         dados = str(i[0]).split(',')
+#         if ('ID_______' == (dados[0])):
+#             lst.remove(i)
+# pd.DataFrame(lst).to_csv('Pessoa.csv')
+
 
 host = 'localhost'
 port = 8000
@@ -15,18 +72,22 @@ mensagem = ''
 while (mensagem!='<sair>'):
     recebe = con.recv(1024)
     if (recebe.decode()[0]=='I'):
-        #Insere um Dado no csv
         if(recebe.decode()[1]=='U'):
-            pass #insere um usuario no csv
-        if(recebe.decode()[0]=='P'):
-            pass #insere um produto no csv
-    if(recebe.decode()[0]=='R'):
+            insere_User(recebe.decode()[2:]) #insere um usuario no csv
+            con.send("Usuario cadastrado".encode()) 
+
+        if(recebe.decode()[1]=='P'):
+            insere_Poduto(recebe.decode()[2:])
+            con.send("Produto cadastrado".encode()) 
+
+    if(recebe.decode()[0]=='L'):
         #Requisita um dado no csv
         if(recebe.decode()[1]=='U'): 
-            pass  #Buscar usuarios e enviar com con.send("Dado".encode())
+            dados = str(exibe_User(recebe.decode()[2:]))  #Buscar usuarios e enviar com con.send("Dado".encode())
+            con.send(dados.encode())   
         if(recebe.decode()[1]=='P'):
-            pass  #Buscar produto e enviar com con.send("Dado".encode()) 
-    print(recebe.decode())
+            dados = str(exibe_Produto(recebe.decode()[2:])) #Buscar produto e enviar com con.send("Dado".encode())
+            con.send(dados.encode())  
 
-    con.send("Dado".encode())
+    
 serv_socket.close()
