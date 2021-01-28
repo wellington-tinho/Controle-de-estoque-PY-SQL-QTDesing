@@ -17,18 +17,18 @@ def insere_Poduto(value):
         writer = csv.writer(file)
         writer.writerow([f'{Nome}', f'{Quantidade}'])
 
-
 def exibe_User(value):
     print('request =',value)
     with open('Pessoa.csv', 'r', newline='') as file:
         linhas = csv.reader(file, delimiter=';')
         lst = list(linhas)
         for i in lst:
-            dados = str(i[0]).split(',')
-            if (value == (dados[0])):
-                return con.send(i[0].encode()) 
+            print("i=",i)
+            if (i!=[]):
+                dados = str(i[0]).split(',')
+                if (value == (dados[0])):
+                    return con.send(i[0].encode()) 
         return '<!FAlSE>'
-
 
 def exibe_Produto(value):
     print('request =',value)
@@ -36,26 +36,30 @@ def exibe_Produto(value):
         linhas = csv.reader(file, delimiter=';')
         lst = list(linhas)
         for i in lst:
-            dados = str(i[0]).split(',')
-            if (value == (dados[0])):
-                return con.send(i[0].encode()) 
+            print("i=",i)
+            if (i!=[]):
+                dados = str(i[0]).split(',')
+                if (value == (dados[0])):
+                    return con.send(i[0].encode()) 
         return '<!FAlSE>'
 
+def lista_Produtos(value):
+    print('request =',value)
+    with open('Produtos.csv', 'r', newline='') as file:
+        linhas = csv.reader(file, delimiter=';')
+        return list(linhas)
 
 
-
-
- 
-#Remover
-# lst = []
-# with open('Pessoa.csv', 'r', newline='') as file:
-#     linhas = csv.reader(file)
-#     lst = list(linhas) 
-#     for i in lst:
-#         dados = str(i[0]).split(',')
-#         if ('ID_______' == (dados[0])):
-#             lst.remove(i)
-# pd.DataFrame(lst).to_csv('Pessoa.csv')
+def Remover_produto(nome):
+    lst = []
+    with open('Produtos.csv', 'r', newline='') as file:
+        linhas = csv.reader(file)
+        lst = list(linhas) 
+        for i in lst:
+            dados = str(i[0]).split(',')
+            if (nome == (dados[0])):
+                lst.remove(i)
+    pd.DataFrame(lst).to_csv('Produtos.csv')
 
 
 host = 'localhost'
@@ -69,6 +73,7 @@ print("Aguardadndo conexão...")
 con,cliente = serv_socket.accept()
 print('conectando')
 mensagem = ''
+
 while (mensagem!='<sair>'):
     recebe = con.recv(1024)
     if (recebe.decode()[0]=='I'):
@@ -81,13 +86,23 @@ while (mensagem!='<sair>'):
             con.send("Produto cadastrado".encode()) 
 
     if(recebe.decode()[0]=='L'):
-        #Requisita um dado no csv
+        #Lista um dado no csv
         if(recebe.decode()[1]=='U'): 
             dados = str(exibe_User(recebe.decode()[2:]))  #Buscar usuarios e enviar com con.send("Dado".encode())
             con.send(dados.encode())   
         if(recebe.decode()[1]=='P'):
             dados = str(exibe_Produto(recebe.decode()[2:])) #Buscar produto e enviar com con.send("Dado".encode())
             con.send(dados.encode())  
+        if(recebe.decode()[1]=='A'):
+            dados = str(lista_Produtos()) #Buscar produto e enviar com con.send("Dado".encode())
+            con.send(dados)
+            
+    if(recebe.decode()[0]=='R'):
+        #Remove dado no csv
+        if(recebe.decode()[1]=='P'): 
+            Remover_produto(recebe.decode()[2:])#Buscar usuarios e enviar com con.send("Dado".encode())
+            con.send("Feito".encode()) 
+
 
     
 serv_socket.close()

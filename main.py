@@ -1,15 +1,29 @@
+# import threading # biblioteca para threads
+
+# from testes import conec
+
+# thread = threading.Thread(target=conec.__init__(), args=())
+# thread.start()
 from Estoque import *
 from Funcionario import *
 from Pessoa import *
 from Produto import *
 
 import sys
-import os
+import socket
+#ip = input('Digite i ip de conexão')
+ip = 'localhost'
+port = 8000
+addr = ((ip,port)) # define a tupla de endereço
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+client_socket.connect(addr) #realiza conexao
+mensagem = ''
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QMainWindow, QApplication, QFileDialog
 from PyQt5.QtCore import QCoreApplication
 
+# from teste_1 import exemplo
 from sign_up import Sign_Up
 from login import Login
 from home import Home
@@ -21,16 +35,17 @@ from adm_exibir import Adm_exibir
 from adm_remover import Adm_remover
 
 
-
 estoque = Estoque()
 
-clientes = [
-  Usuario("Joao", "1"), 
-]
+# clientes = [
+#   Usuario("Joao", "1"), 
+# ]
 
-funcionarios = [
-  Funcionario("Ricardo","Vendendor", "1"), 
-]
+# funcionarios = [
+#   Funcionario("Ricardo","Vendendor", "1"), 
+# ]
+
+
 
 def is_funcionario(pessoa):
     """
@@ -104,9 +119,12 @@ def cadastro_usuario(nome,ocupacao,cpf,senha):
     clientes.append(user)
     return user
     """   
-    user=Usuario(nome,cpf)
-    clientes.append(user)
-    return user
+    mensagem = f"IU{cpf},{nome},{ocupacao},{senha}"
+    client_socket.send(mensagem.encode()) #envia mensagem
+    print(client_socket.recv(1024).decode())
+    # user=Usuario(nome,cpf)
+    # clientes.append(user)
+    # return user
     
 def cadastro_funcionario(nome,ocupacao,cpf,senha):
   """
@@ -133,73 +151,76 @@ def cadastro_funcionario(nome,ocupacao,cpf,senha):
     funcionarios.append(user)
     return user
     """   
-  user=Funcionario(nome,ocupacao,cpf)
-  funcionarios.append(user)
-  return user
+  mensagem = f"IU{cpf},{nome},{ocupacao},{senha}"
+  client_socket.send(mensagem.encode()) #envia mensagem
+  print(client_socket.recv(1024).decode())
+  # user=Funcionario(nome,ocupacao,cpf)
+  # funcionarios.append(user)
+  # return user
 
-def id_existe(Id,lista):
-  """
-    Função que verifica se um valor enviado existe na lista enviada tambem.
+# def id_existe(Id,lista):
+  #   """
+  #     Função que verifica se um valor enviado existe na lista enviada tambem.
 
-    Parametros
-    ___________
-    Id : valor do type String
-    lista : valor do type list
+  #     Parametros
+  #     ___________
+  #     Id : valor do type String
+  #     lista : valor do type list
 
-    Retornos
-    __________
-    returna um valor objeto instanciado na lista ou um boolean False caso não houver item na lista
+  #     Retornos
+  #     __________
+  #     returna um valor objeto instanciado na lista ou um boolean False caso não houver item na lista
 
-    Exeções
-    __________
-    Sem exeções
+  #     Exeções
+  #     __________
+  #     Sem exeções
 
-    Exemplo
-    __________
-    for i in lista:
-    if (i.id == Id):
-      return i
-    return False
-    """   
-  
-  for i in lista:
-    if (i.id == Id):
-      return i
-  return False
+  #     Exemplo
+  #     __________
+  #     for i in lista:
+  #     if (i.id == Id):
+  #       return i
+  #     return False
+  #     """   
+    
+  #   for i in lista:
+  #     if (i.id == Id):
+  #       return i
+  #   return False
 
-def mostra_login(user):
-  """
-  Função que verifica se um valor enviado existe na lista enviada tambem.
+  # def mostra_login(user):
+  #   """
+  #   Função que verifica se um valor enviado existe na lista enviada tambem.
 
-  Parametros
-  ___________
-  Id : valor do type String
-  lista : valor do type list
+  #   Parametros
+  #   ___________
+  #   Id : valor do type String
+  #   lista : valor do type list
 
-  Retornos
-  __________
-  returna uma string exibindo se o usuario esta logado ou não
+  #   Retornos
+  #   __________
+  #   returna uma string exibindo se o usuario esta logado ou não
 
-  Exeções
-  __________
-  Sem exeções
+  #   Exeções
+  #   __________
+  #   Sem exeções
 
-  Exemplo
-  __________
-  if is_funcionario(user):
-    return f'Logado como funcionario: {user.nome}'
-  if is_cliente(user): 
-    return f'Logado como Cliente: {user.nome}'
-  else:
-    return 'Voce não esta logado'
+  #   Exemplo
+  #   __________
+  #   if is_funcionario(user):
+  #     return f'Logado como funcionario: {user.nome}'
+  #   if is_cliente(user): 
+  #     return f'Logado como Cliente: {user.nome}'
+  #   else:
+  #     return 'Voce não esta logado'
 
-  """   
-  if is_funcionario(user):
-    return f'Logado como funcionario: {user.nome}'
-  if is_cliente(user): 
-    return f'Logado como Cliente: {user.nome}'
-  else:
-    return 'Voce não esta logado'
+  #   """   
+  #   if is_funcionario(user):
+  #     return f'Logado como funcionario: {user.nome}'
+  #   if is_cliente(user): 
+  #     return f'Logado como Cliente: {user.nome}'
+  #   else:
+  #     return 'Voce não esta logado'
 
 
 class Ui_Main(QtWidgets.QWidget):
@@ -444,8 +465,7 @@ class Main(QMainWindow,Ui_Main):
     self.tela_adm.pushButton_4.clicked.connect(self.abrirTelaADM_remover)
     self.tela_adm.pushButton_6.clicked.connect(self.abrirTelaADM_exibir)
     self.tela_adm.pushButton_7.clicked.connect(self.botaoVoltar)
-    # self.tela_adm.pushButton
-
+ 
     #TELA_ADM_ADICIONA
     self.tela_adm_add.pushButton_8.clicked.connect(self.abrirTelaADM)
     self.tela_adm_add.pushButton_5.clicked.connect(self.botaoVoltar)
@@ -505,12 +525,14 @@ class Main(QMainWindow,Ui_Main):
     ocupacao =  self.tela_cadastro.lineEdit_6.text()
     cpf =       self.tela_cadastro.lineEdit_5.text()
     senha =     self.tela_cadastro.lineEdit_7.text()
-    if not(self.tela_cadastro.radioButton.isChecked() and self.tela_cadastro.radioButton_2.isChecked()):
-      QMessageBox.information(None,'POOII','Voce deve escolher entre Cliente ou Funcionario')
 
     if (self.tela_cadastro.radioButton.isChecked()):
       if not(nome == '' or ocupacao == '' or cpf == '' or senha == ''):
-          cadastro_usuario(nome,ocupacao,cpf,senha)
+          # cadastro_usuario(nome,ocupacao,cpf,senha)
+          mensagem = f"IU{cpf},{nome},{'Cliente'},{senha}"
+          client_socket.send(mensagem.encode()) #envia mensagem
+
+
           QMessageBox.information(None,'StorageControl','Cadastro realizado')
           self.QtStack.setCurrentIndex(2)
           self.tela_cadastro.lineEdit_5.setText('')
@@ -523,7 +545,10 @@ class Main(QMainWindow,Ui_Main):
 
     if (self.tela_cadastro.radioButton_2.isChecked()):
       if not(nome == '' or ocupacao == '' or cpf == '' or senha == ''):
-          cadastro_funcionario(nome,ocupacao,cpf,senha)
+          # cadastro_funcionario(nome,ocupacao,cpf,senha)
+          mensagem = f"IU{cpf},{nome},{'Funcionario'},{senha}"
+          client_socket.send(mensagem.encode()) #envia mensagem
+
           QMessageBox.information(None,'StorageControl','Cadastro realizado')
           self.QtStack.setCurrentIndex(2)
           self.tela_cadastro.lineEdit_5.setText('')
@@ -531,7 +556,11 @@ class Main(QMainWindow,Ui_Main):
           self.tela_cadastro.lineEdit_7.setText('')
           self.tela_cadastro.lineEdit_8.setText('')
       else:
-        QMessageBox.information(None,'POOII','Todos os valores devem ser preenchidos')              
+        QMessageBox.information(None,'POOII','Todos os valores devem ser preenchidos')
+
+    else:
+      # (self.tela_cadastro.radioButton.isChecked() and self.tela_cadastro.radioButton_2.isChecked()):
+      QMessageBox.information(None,'POOII','Voce deve escolher entre Cliente ou Funcionario')              
 
   def botaoLogar(self):
     """
@@ -554,36 +583,40 @@ class Main(QMainWindow,Ui_Main):
       
     
     if (self.tela_login.radioButton.isChecked()):
-      user=id_existe(cpf, clientes)
-      if(is_cliente(user)):
+      mensagem = f"LU{cpf}"
+      client_socket.send(mensagem.encode()) #envia mensagem
+      dados = client_socket.recv(1024).decode().split(',')
+      if(cpf,nome,senha==dados[0],dados[1],dados[3]):
         self.tela_login.lineEdit_5.setText('')
         self.tela_login.lineEdit_7.setText('')
         self.tela_login.lineEdit_8.setText('')
 
-        setlogado(user)
-        self.tela_login.label_9.setText('Olá '+logadocom().nome)
-        QMessageBox.information(None,'POOII',f'Bem vindo {user.nome}')
+        setlogado(nome)
+        self.tela_login.label_9.setText('Olá '+nome)
+        QMessageBox.information(None,'POOII',f'Bem vindo {nome}')
         self.QtStack.setCurrentIndex(0)
-        self.tela_home.label_2.setText('Olá '+user.nome)
+        self.tela_home.label_2.setText('Olá '+nome)
 
       else:
-          QMessageBox.information(None,'POOII','CPF não encontrado')
+          QMessageBox.information(None,'POOII','valores incorretos encontrado')
       
     if (self.tela_login.radioButton_2.isChecked()):
-      user=id_existe(cpf, funcionarios)
-      if(is_funcionario(user)):
-        setlogado(user)
-        self.tela_login.label_9.setText('Olá '+logadocom().nome)
-        QMessageBox.information(None,'POOII',f'Bem vindo {user.nome}')
+      mensagem = f"LU{cpf}"
+      client_socket.send(mensagem.encode()) #envia mensagem
+      dados = client_socket.recv(1024).decode().split(',')
+      if(cpf,nome,senha==dados[0],dados[1],dados[3]):
+        self.tela_login.lineEdit_5.setText('')
+        self.tela_login.lineEdit_7.setText('')
+        self.tela_login.lineEdit_8.setText('')
+
+        setlogado(nome)
+        self.tela_login.label_9.setText('Olá '+nome)
+        QMessageBox.information(None,'POOII',f'Bem vindo {nome}')
         self.QtStack.setCurrentIndex(0)
-        self.tela_home.label_2.setText('Olá '+user.nome)
+        self.tela_home.label_2.setText('Olá '+nome)
 
       else:
-          QMessageBox.information(None,'POOII','CPF não encontrado')
-
-    # if not(self.tela_cadastro.radioButton.isChecked() and self.tela_cadastro.radioButton_2.isChecked()):
-    else:
-        QMessageBox.information(None,'POOII','Voce deve escolher entre Cliente ou Funcionario')
+          QMessageBox.information(None,'POOII','valores incorretos encontrado')
 
   def botaoVoltar(self):
     """
@@ -643,7 +676,6 @@ class Main(QMainWindow,Ui_Main):
       self.tela_vender.comboBox.clear()
       self.tela_vender.comboBox.addItems(estoque.allprodutos())
       
- 
   def botaoCompra(self):
     """
     Função responsavel pelo botao que confirma a compra na tela de compras
@@ -716,11 +748,15 @@ class Main(QMainWindow,Ui_Main):
       Sem exeções
 
       """
-      
-      if is_funcionario(logadocom()):
-        self.QtStack.setCurrentIndex(5)
+      if self.tela_home.label_2.text() == "Não logado":
+        QMessageBox.information(None,'POOII','Voce precisa logar para completar essa etapa')
       else:
-        QMessageBox.information(None,'POOII','Voce precisa estar logado como funcionario')
+        self.QtStack.setCurrentIndex(5)
+      
+      # if is_funcionario(logadocom()):
+      #   self.QtStack.setCurrentIndex(5)
+      # else:
+      #   QMessageBox.information(None,'POOII','Voce precisa estar logado como funcionario')
 
   def abrirTelaADM_adicionar(self):
       """
@@ -752,9 +788,13 @@ class Main(QMainWindow,Ui_Main):
       Sem exeções
 
       """
+      mensagem = f"LA"
+      client_socket.send(mensagem.encode()) #envia mensagem
+      array=client_socket.recv(1024)
+      print(array)
       self.QtStack.setCurrentIndex(7)
       self.tela_adm_exclui.comboBox.clear()
-      self.tela_adm_exclui.comboBox.addItems(estoque.allprodutos())
+      self.tela_adm_exclui.comboBox.addItems(array)
     
   def abrirTelaADM_exibir(self):
       """
@@ -770,10 +810,13 @@ class Main(QMainWindow,Ui_Main):
       Sem exeções
 
       """
+      mensagem = f"LA"
+      client_socket.send(mensagem.encode()) #envia mensagem
+      array=client_socket.recv(1024)
+      print(array)
       self.QtStack.setCurrentIndex(8)
       self.tela_adm_exibir.listWidget.clear()
-      self.tela_adm_exibir.listWidget.addItems(estoque.allprodutos_com_quantidade())
-
+      self.tela_adm_exibir.listWidget.addItems(array)
     
   def botao_adc_item(self):
     produto =           self.tela_adm_add.lineEdit_6.text()
@@ -781,22 +824,33 @@ class Main(QMainWindow,Ui_Main):
   
 
     if (produto != '' and quantidade !=''):
-      if estoque.cadastrarProduto(produto,int(quantidade)):
-        estoque.AttLista()
-        QMessageBox.information(None,'POOII',f'Operação concluida, produto {produto} foi cadastrado com suceeso')
-      else:
-        QMessageBox.information(None,'POOII',f'Operação cancelada, produto {produto} já foi cadastrado no sistema')
-    else:
+        mensagem = f"IP{produto},{quantidade}"
+        client_socket.send(mensagem.encode()) #envia mensagem
+        print(client_socket.recv(1024).decode())
+      
+    #   if estoque.cadastrarProduto(produto,int(quantidade)):
+
+    #     estoque.AttLista()
+    #     QMessageBox.information(None,'POOII',f'Operação concluida, produto {produto} foi cadastrado com suceeso')
+    #   else:
+    #     QMessageBox.information(None,'POOII',f'Operação cancelada, produto {produto} já foi cadastrado no sistema')
+    # else:
         QMessageBox.information(None,'POOII',f'Erro, um ou mais campos não foram preenchidos')
     self.tela_adm_add.lineEdit_6.setText('')
     self.tela_adm_add.lineEdit_5.setText('')
   
   def botao_remover(self):
     produto=self.tela_adm_exclui.comboBox.currentText()
-    if estoque.buscarProduto(produto):
-      nome=estoque.buscarProduto(produto)
-      estoque.exluirProduto(produto)
-      QMessageBox.information(None,'POOII',f'{nome} foi excuido com sucesso')
+    mensagem = f"LP{produto}"
+    client_socket.send(mensagem.encode()) #envia mensagem
+    (client_socket.recv(1024).decode())
+    if (client_socket.recv(1024).decode() != '<!FAlSE>'):
+      mensagem = f"RP{produto}"
+      client_socket.send(mensagem.encode()) #envia mensagem
+      print(client_socket.recv(1024).decode())
+      # nome=estoque.buscarProduto(produto)
+      # estoque.exluirProduto(produto)
+      QMessageBox.information(None,'POOII',f'{produto} foi excuido com sucesso')
 
 
 app = QApplication(sys.argv)
