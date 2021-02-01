@@ -757,6 +757,7 @@ class Main(QMainWindow,Ui_Main):
         for i in resultado:
             if(i[0]==cpf):
                 self.QtStack.setCurrentIndex(5)
+                self.tela_adm.label_2.setText(logadocom())
                 return
         QMessageBox.information(None,'POOII','Voce precisa estar logado como funcionario')
       else:
@@ -779,6 +780,7 @@ class Main(QMainWindow,Ui_Main):
 
       """
       self.QtStack.setCurrentIndex(6)
+      self.tela_adm_add.label_9.setText(logadocom())
     
   def abrirTelaADM_remover(self):
       """
@@ -794,6 +796,7 @@ class Main(QMainWindow,Ui_Main):
       Sem exeções
 
       """
+      self.tela_adm_exclui.label_9.setText(logadocom())
       self.QtStack.setCurrentIndex(7)
       self.tela_adm_exclui.comboBox.clear()
       lista=[]
@@ -815,6 +818,8 @@ class Main(QMainWindow,Ui_Main):
       Sem exeções
 
       """
+      self.tela_adm_exibir.label_9.setText(logadocom())
+
       self.QtStack.setCurrentIndex(8)
       self.tela_adm_exibir.listWidget.clear()
       lista=[]
