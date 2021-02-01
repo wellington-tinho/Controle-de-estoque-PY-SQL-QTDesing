@@ -686,16 +686,16 @@ class Main(QMainWindow,Ui_Main):
     produto=self.tela_compra.comboBox.currentText()
     quantidade = self.tela_compra.lineEdit_5.text()
     if (produto):
-      for i in (bd.exibe_produtos()):
-        if(i[0]==produto):
-          nome=i[0]
-          qtd=int(i[1])- int(quantidade)
-          if(qtd<0):
-            QMessageBox.information(None,'POOII',f'Quantidade maior que Disponivel total {int(i[1])}')
-          else:
-            bd.exibe_produtos(nome)
-            bd.insert_produto(nome,str(qtd))
-          QMessageBox.information(None,'POOII',f'Operação concluida,  quantidade restante {qtd}')
+        for i in (bd.exibe_produtos()):
+          if(i[0]==produto):
+            nome=i[0]
+            if(int(i[1])- int(quantidade)<0):
+              QMessageBox.information(None,'POOII',f'Quantidade maior que Disponivel total {int(i[1])}')
+            else:
+              qtd=int(i[1])- int(quantidade)
+              bd.ExcluiProduto(nome)
+              bd.insert_produto(nome,str(qtd))
+            QMessageBox.information(None,'POOII',f'Operação concluida')
       
     self.QtStack.setCurrentIndex(0)
     
@@ -720,13 +720,13 @@ class Main(QMainWindow,Ui_Main):
         for i in (bd.exibe_produtos()):
           if(i[0]==produto):
             nome=i[0]
-            qtd=int(i[1])- int(quantidade)
-            if(qtd<0):
+            if(int(i[1])- int(quantidade)<0):
               QMessageBox.information(None,'POOII',f'Quantidade maior que Disponivel total {int(i[1])}')
             else:
+              qtd=int(i[1])- int(quantidade)
               bd.ExcluiProduto(nome)
               bd.insert_produto(nome,str(qtd))
-            QMessageBox.information(None,'POOII',f'Operação concluida,  quantidade restante {qtd}')
+            QMessageBox.information(None,'POOII',f'Operação concluida')
         
     self.QtStack.setCurrentIndex(0)
   def abrirTelaADM(self):
@@ -757,8 +757,10 @@ class Main(QMainWindow,Ui_Main):
         for i in resultado:
             if(i[0]==cpf):
                 self.QtStack.setCurrentIndex(5)
-        else:
-          QMessageBox.information(None,'POOII','Voce precisa estar logado como funcionario')
+                return
+        QMessageBox.information(None,'POOII','Voce precisa estar logado como funcionario')
+      else:
+        QMessageBox.information(None,'POOII','Voce precisa estar logado como funcionario')
         
        
 
@@ -837,10 +839,14 @@ class Main(QMainWindow,Ui_Main):
   
   def botao_remover(self):
     produto=self.tela_adm_exclui.comboBox.currentText()
-    if estoque.buscarProduto(produto):
-      nome=estoque.buscarProduto(produto)
-      bd.ExcluiProduto(produto)
-      QMessageBox.information(None,'POOII',f'{nome} foi excuido com sucesso')
+    bd.ExcluiProduto(produto)
+    QMessageBox.information(None,'POOII',f'{produto} foi excuido com sucesso')
+    self.QtStack.setCurrentIndex(7)
+    self.tela_adm_exclui.comboBox.clear()
+    lista=[]
+    for i in (bd.exibe_produtos()):
+        lista.append(i[0])
+    self.tela_adm_exclui.comboBox.addItems(lista)
 
 
 app = QApplication(sys.argv)
