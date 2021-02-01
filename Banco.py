@@ -1,4 +1,6 @@
 import mysql.connector as mysql
+import hashlib  
+
 
 class Banco:
     def __init__(self):
@@ -70,7 +72,7 @@ class Banco:
         except Exception as e:
             return False
 
-    def insert_produto(self,nome:str,quantidade:int):
+    def insert_produto(self,nome:str,quantidade:str):
         """
         Função de cadastro de produtos no banco.
 
@@ -107,21 +109,34 @@ class Banco:
             connection = mysql.connect(host='localhost',db='banco',user='root',passwd='1234')
             cursor = connection.cursor()
             if(ocupacao == 'cliente'):
-                resultado = cursor.execute('SELECT * FROM cliente WHERE cpf= %s AND senha=MD5(%s)',(cpf,senha))
-                teste = resultado.fetchall()
+                print('cliente')
+                result = hashlib.md5(senha.encode()) 
+                senha_md5=result.hexdigest()
+                cursor.execute("SELECT * FROM clientes ")
+                resultado = cursor.fetchall()
                 connection.commit()
                 connection.close()
-                return teste
+                for i in resultado:
+                    if(i[0]==cpf and i[3]==senha_md5):
+                        return i
+            if(ocupacao == 'funcionario'):
+                print('funcionario')
+                result = hashlib.md5(senha.encode()) 
+                senha_md5=result.hexdigest()
 
-            if(ocupacao=='funcionario'):
-                resultado = cursor.execute('SELECT * FROM funcionario WHERE cpf= %s AND senha=MD5(%s)',(cpf,senha))
-                teste = resultado.fetchall()
+                cursor.execute("SELECT * FROM funcionarios ")
+                resultado = cursor.fetchall()
                 connection.commit()
                 connection.close()
-                return teste  
-            return False
+
+                for i in resultado:
+                    if(i[0]==cpf and i[3]==senha_md5):
+                        return i
+                return [] 
+            return []
         except Exception as e:
             return []
+
         
     def exibe_produtos(self):
         """
@@ -189,13 +204,7 @@ class Banco:
             return []
 
 
-banco = Banco()
-
+# bd=Banco();
 # for i in range(5):
-#     print(banco.insert_produto('maça'+str(i),str(i)))
+#     bd.insert_produto('maça'+str(i),str(+1))
 
-# print(banco.exibe_produtos())
-
-# banco.ExcluiProduto('maça1')
-print(banco.exibe_produtos())
-print(banco.insert_Funcionario('wellington2','1234','dev','1234'))

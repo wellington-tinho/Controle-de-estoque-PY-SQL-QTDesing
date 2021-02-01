@@ -153,8 +153,16 @@ class Login(object):
         self.label_10.setFont(font)
         self.label_10.setStyleSheet("color: rgb(255, 255, 255)")
         self.label_10.setObjectName("label_10")
+        self.label_11 = QtWidgets.QLabel(self.frame_3)
+        self.label_11.setGeometry(QtCore.QRect(70, 300, 51, 16))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_11.setFont(font)
+        self.label_11.setObjectName("label_11")
         self.lineEdit_5 = QtWidgets.QLineEdit(self.frame_3)
-        self.lineEdit_5.setGeometry(QtCore.QRect(230, 290, 251, 41))
+        self.lineEdit_5.setGeometry(QtCore.QRect(130, 359, 171, 41))
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
@@ -167,7 +175,7 @@ class Login(object):
 "")
         self.lineEdit_5.setObjectName("lineEdit_5")
         self.label_13 = QtWidgets.QLabel(self.frame_3)
-        self.label_13.setGeometry(QtCore.QRect(150, 380, 101, 20))
+        self.label_13.setGeometry(QtCore.QRect(330, 370, 101, 20))
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
@@ -175,7 +183,7 @@ class Login(object):
         self.label_13.setFont(font)
         self.label_13.setObjectName("label_13")
         self.label_14 = QtWidgets.QLabel(self.frame_3)
-        self.label_14.setGeometry(QtCore.QRect(160, 300, 41, 20))
+        self.label_14.setGeometry(QtCore.QRect(80, 370, 41, 20))
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
@@ -183,7 +191,7 @@ class Login(object):
         self.label_14.setFont(font)
         self.label_14.setObjectName("label_14")
         self.lineEdit_7 = QtWidgets.QLineEdit(self.frame_3)
-        self.lineEdit_7.setGeometry(QtCore.QRect(230, 370, 231, 41))
+        self.lineEdit_7.setGeometry(QtCore.QRect(400, 360, 171, 41))
         self.lineEdit_7.setStyleSheet("QLineEdit:focus{\n"
 "    border: 2px solid;\n"
 "    \n"
@@ -202,6 +210,21 @@ class Login(object):
         self.pushButton_8.setMouseTracking(False)
         self.pushButton_8.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.pushButton_8.setObjectName("pushButton_8")
+        self.lineEdit_8 = QtWidgets.QLineEdit(self.frame_3)
+        self.lineEdit_8.setGeometry(QtCore.QRect(130, 289, 441, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.lineEdit_8.setFont(font)
+        self.lineEdit_8.setStyleSheet("QLineEdit:focus{\n"
+"    border: 2px solid rgb(255, 255, 255);  \n"
+"    color:rgb(255, 255, 255);\n"
+"}\n"
+"\n"
+"\n"
+"")
+        self.lineEdit_8.setObjectName("lineEdit_8")
         self.pushButton_5 = QtWidgets.QPushButton(self.frame_3)
         self.pushButton_5.setGeometry(QtCore.QRect(590, 50, 21, 21))
         font = QtGui.QFont()
@@ -261,14 +284,14 @@ class Login(object):
         self.label_7.setText(_translate("MainWindow", "Storage Control "))
         self.label_9.setText(_translate("MainWindow", " VC Não esta logado"))
         self.label_10.setText(_translate("MainWindow", "Login"))
+        self.label_11.setText(_translate("MainWindow", "Nome"))
         self.label_13.setText(_translate("MainWindow", "Senha"))
         self.label_14.setText(_translate("MainWindow", "CPF"))
         self.pushButton_8.setText(_translate("MainWindow", "Confirmar"))
         self.pushButton_5.setText(_translate("MainWindow", "←"))
         self.radioButton_2.setText(_translate("MainWindow", "Funcionario"))
         self.radioButton.setText(_translate("MainWindow", "Cliente"))
-import files_rc
-
+import files_rc 
 
 if __name__ == "__main__":
     import sys
