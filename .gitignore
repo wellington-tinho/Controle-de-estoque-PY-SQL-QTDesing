@@ -2,4 +2,4 @@
 *.ui
 
 __pycache__/
-imagens/
+# imagens/

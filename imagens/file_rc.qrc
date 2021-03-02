@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>botton_engine.png</file>
+    <file>profile-user.png</file>
+  </qresource>
+</RCC>
