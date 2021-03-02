@@ -52,7 +52,7 @@ Controle de estoque feito em Python3 com banco de dados SQL e interface grafica 
 
 |  |  |
 |----------|----------|
-| ![example](https://github.com/wrtinho/crud_simples_em_python/blob/master/imagens/gif1.gif) |  ![example](https://github.com/wrtinho/crud_simples_em_python/blob/master/imagens/gif1.gif) |
+| ![example](https://github.com/wrtinho/crud_simples_em_python/blob/master/imagens/gif1.gif) |  ![example](https://github.com/wrtinho/crud_simples_em_python/blob/master/imagens/gif2.gif) |
 
 
 <br>
