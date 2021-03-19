@@ -56,6 +56,7 @@ Controle de estoque feito em Python3 com banco de dados SQL e interface grafica 
 
 
 <br>
+
 ## :computer: Tecnologias
 Tecnologias e ferramentas utilizadas no desenvolvimento do projeto:
 
