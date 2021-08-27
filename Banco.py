@@ -8,8 +8,11 @@ class Banco:
         Função de iniciação do banco
 
         """
-
-        connection = mysql.connect(host='localhost',db='banco',user='root',passwd='1234')
+        connection = mysql.connect(host='localhost',user='root',passwd='1234')  #passwd essa senha vc precisa configurar no seu banco mysql
+        print(connection)
+        cursor = connection.cursor()
+        cursor.execute("CREATE DATABASE IF NOT EXISTS banco;")
+        connection = mysql.connect(host='localhost',db='banco',user='root',passwd='1234')  #passwd essa senha vc precisa configurar no seu
         cursor = connection.cursor()
         # sql = """ CREATE TABLE IF NOT EXISTS usuarios_senha(id integer AUTO_INCREMENT PRIMARY KEY, nome text NOT NULL,senha VARCHAR(32), email text NOT NULL);"""
 

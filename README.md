@@ -69,14 +69,17 @@ Tecnologias e ferramentas utilizadas no desenvolvimento do projeto:
 # :construction_worker: Como rodar
 
 ```bash
-# Certifique de ter o MySQL server e crie um banco de dados com o seguinte comando:
-$ CREATE DATABASE banco;
+# Certifique de ter o MySQL server instalado e configurado com a senha 1234, 
+# Caso seu mysql server estiver sem senha ou outra senha, configure mude os parametros do *passwd* dento do arquivo Banco.py:
 
 # Após isto, clone o Repositorio
 $ git clone https://github.com/wrtinho/crud_simples_em_python.git
 
 # Entre na pasta do projeto
-$ cd crud_simples_em_python/ 
+$ cd crud_simples_em_python/
+
+#Instale as Dependencias do projeto
+$pip install -r requirements.txt
 
 # Rode a aplicação
 $ python main.py

@@ -1,0 +1,8 @@
+mysql==0.0.3
+mysql-connector-python==8.0.26
+mysqlclient==2.0.3
+protobuf==3.17.3
+PyQt5==5.15.4
+PyQt5-Qt5==5.15.2
+PyQt5-sip==12.9.0
+six==1.16.0
