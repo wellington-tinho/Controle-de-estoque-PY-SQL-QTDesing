@@ -73,10 +73,10 @@ Tecnologias e ferramentas utilizadas no desenvolvimento do projeto:
 # Caso seu mysql server estiver sem senha ou outra senha, configure mude os parametros do *passwd* dento do arquivo Banco.py:
 
 # Após isto, clone o Repositorio
-$ git clone https://github.com/wrtinho/crud_simples_em_python.git
+$ git clone https://github.com/wrtinho/Controle-de-estoque-PY-SQL-QTDesing.git
 
 # Entre na pasta do projeto
-$ cd crud_simples_em_python/
+$ cd Controle-de-estoque-PY-SQL-QTDesing/
 
 #Instale as Dependencias do projeto
 $pip install -r requirements.txt
